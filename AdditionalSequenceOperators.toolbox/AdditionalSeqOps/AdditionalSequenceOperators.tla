@@ -139,10 +139,6 @@ FirstIndexOfElement(seq, elem) ==
 (*                                                              *)
 (* Precondition: No duplication in each individual sequence.                        *)
 (*                                                              *)
-(* Two sequences are compatible if and only if for any two common elements *)
-(* in both sequences, the relative order of them in the two     *)
-(* sequences are the same.                                      *)
-(*                                                              *)
 (* ADDED by hengxin; Aug. 12, 2018                              *)
 (****************************************************************)
 Compatible(seq1, seq2) ==
@@ -172,5 +168,5 @@ LCSCompatibleTest(S) ==
     \A seq1, seq2 \in PermsWithin(S): LCSCompatible(seq1, seq2)
 =============================================================================
 \* Modification History
-\* Last modified Sun Aug 12 20:35:56 CST 2018 by hengxin
+\* Last modified Sun Aug 12 18:26:23 CST 2018 by hengxin
 \* Created Tue Jul 03 15:21:02 CST 2018 by hengxin

@@ -2,14 +2,14 @@
 EXTENDS AdditionalSequenceOperators, TLC
 
 \* Constant expression definition @modelExpressionEval
-const_expr_1530674583587162000 == 
-InsertElement(<<>>, "a", 100)
+const_expr_1534073889678302000 == 
+LCSCompatibleTest({1,2,3,4,5,6,7})
 ----
 
 \* Constant expression ASSUME statement @modelExpressionEval
-ASSUME PrintT(<<"$!@$!@$!@$!@$!",const_expr_1530674583587162000>>)
+ASSUME PrintT(<<"$!@$!@$!@$!@$!",const_expr_1534073889678302000>>)
 ----
 
 =============================================================================
 \* Modification History
-\* Created Wed Jul 04 11:23:03 CST 2018 by hengxin
+\* Created Sun Aug 12 19:38:09 CST 2018 by hengxin
