@@ -28,17 +28,17 @@
 <listEntry value="1WLSpec"/>
 </listAttribute>
 <listAttribute key="modelCorrectnessProperties">
-<listEntry value="1&lt;&gt; comm!EmptyChannel"/>
-<listEntry value="1&lt;&gt; Termination"/>
+<listEntry value="0&lt;&gt; comm!EmptyChannel"/>
+<listEntry value="0&lt;&gt; Termination"/>
 </listAttribute>
 <stringAttribute key="modelExpressionEval" value=""/>
 <stringAttribute key="modelParameterActionConstraint" value=""/>
 <listAttribute key="modelParameterConstants">
-<listEntry value="Client;;{&quot;c1&quot;, &quot;c2&quot;};0;0"/>
-<listEntry value="Char;;{&quot;a&quot;,&quot;b&quot;, &quot;c&quot;, &quot;d&quot;};0;0"/>
+<listEntry value="Client;;{&quot;c1&quot;, &quot;c2&quot;, &quot;c3&quot;};0;0"/>
+<listEntry value="Char;;{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;};0;0"/>
 <listEntry value="Server;;&quot;s&quot;;0;0"/>
 <listEntry value="InitState;;&lt;&lt;&gt;&gt;;0;0"/>
-<listEntry value="Priority;;[c1 |-&gt; 1, c2 |-&gt; 2];0;0"/>
+<listEntry value="Priority;;[c1 |-&gt; 1, c2 |-&gt; 2, c3 |-&gt; 3];0;0"/>
 </listAttribute>
 <stringAttribute key="modelParameterContraint" value=""/>
 <listAttribute key="modelParameterDefinitions">
@@ -47,7 +47,7 @@
 </listAttribute>
 <stringAttribute key="modelParameterModelValues" value="{}"/>
 <stringAttribute key="modelParameterNewDefinitions" value=""/>
-<intAttribute key="numberOfWorkers" value="1"/>
+<intAttribute key="numberOfWorkers" value="4"/>
 <booleanAttribute key="recover" value="false"/>
 <stringAttribute key="result.mail.address" value=""/>
 <intAttribute key="simuAril" value="-1"/>
@@ -55,5 +55,5 @@
 <intAttribute key="simuSeed" value="-1"/>
 <stringAttribute key="specName" value="AJupiter"/>
 <stringAttribute key="view" value=""/>
-<booleanAttribute key="visualizeStateGraph" value="true"/>
+<booleanAttribute key="visualizeStateGraph" value="false"/>
 </launchConfiguration>
