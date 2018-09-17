@@ -1,37 +1,9 @@
 ------------------------------ MODULE AJupiter ------------------------------
 (***************************************************************************)
-(* Specification of the Jupiter protocol presented by Attiya and others.     *)
+(* Specification of the Jupiter protocol presented by Attiya and others.   *)
 (***************************************************************************)
 
-EXTENDS Integers, OT, TLC, AdditionalFunctionOperators
------------------------------------------------------------------------------
-CONSTANTS
-    Client,     \* the set of client replicas
-    Server,     \* the (unique) server replica
-    Char,       \* set of characters allowed
-    InitState   \* the initial state of each replica
-    
-Replica == Client \cup {Server}
-
-List == Seq(Char \cup Range(InitState))   \* all possible lists/strings
-MaxLen == Cardinality(Char) + Len(InitState) \* the max length of lists in any states;
-    \* We assume that all inserted elements are unique.
-ClientNum == Cardinality(Client)
-Priority == CHOOSE f \in [Client -> 1 .. ClientNum] : Injective(f)
-----------------------------------------------------------------------
-ASSUME 
-    /\ Range(InitState) \cap Char = {}
-    /\ Priority \in [Client -> 1 .. ClientNum]
------------------------------------------------------------------------------
-(*********************************************************************)
-(* The set of all operations.                                        *)
-(* Note: The positions are indexed from 1. *)
-(*********************************************************************)
-Rd == [type: {"Rd"}]
-Del == [type: {"Del"}, pos: 1 .. MaxLen]
-Ins == [type: {"Ins"}, pos: 1 .. (MaxLen + 1), ch: Char, pr: 1 .. ClientNum] \* pr: priority
-
-Op == Ins \cup Del  \* Now we don't consider Rd operations.
+EXTENDS OT, Jupiter
 -----------------------------------------------------------------------------
 (***************************************************************************)
 (* Messages between the Server and the Clients.                            *)
@@ -52,15 +24,6 @@ VARIABLES
     (*****************************************************************)
     sbuf,    \* sbuf[c]: buffer (of operations) at the Server, one per client c \in Client
     srec,    \* srec[c]: the number of new messages have been ..., one per client c \in Client
-    (*
-      For all replicas.
-    *)
-    state,  \* state[r]: state (the list content) of replica r \in Replica
-    (*****************************************************************)
-    (* For communication between the Server and the Clients:         *)
-    (*****************************************************************)
-    cincoming,  \* cincoming[c]: incoming channel at the client c \in Client
-    sincoming,  \* incoming channel at the Server
     (*****************************************************************)
     (* For model checking:                                           *)
     (*****************************************************************)
@@ -73,7 +36,7 @@ cVars == <<cbuf, crec>>         \* variables for the clients
 ecVars == <<eVars, cVars>>      \* variables for the clients and the environment
 sVars == <<sbuf, srec>>         \* variables for the server
 commVars == <<cincoming, sincoming>>    \* variables for communication
-vars == <<eVars, cVars, sVars, commVars, state>> \* all variables
+Vars == <<eVars, cVars, sVars, commVars, state>> \* all variables
 -----------------------------------------------------------------------------
 TypeOK == 
     (*****************************************************************)
@@ -190,17 +153,6 @@ SRev ==
     /\ UNCHANGED ecVars
 -----------------------------------------------------------------------------
 (*********************************************************************)
-(* The next-state relation.                                          *)
-(*********************************************************************)
-Next == 
-    \/ \E c \in Client: Do(c) \/ Rev(c)
-    \/ SRev
-(*********************************************************************)
-(* The Spec.  (TODO: Check the fairness condition.)                  *)
-(*********************************************************************)
-Spec == Init /\ [][Next]_vars /\ WF_vars(Next)
------------------------------------------------------------------------------
-(*********************************************************************)
 (* The safety properties to check: Eventual Convergence (EC),        *)
 (* Quiescent Consistency (QC), Strong Eventual Convergence (SEC),    *)
 (* Weak List Specification, (WLSpec),                                *)
@@ -216,12 +168,11 @@ Spec == Init /\ [][Next]_vars /\ WF_vars(Next)
 (*********************************************************************)
 QC == comm!EmptyChannel => Cardinality(Range(state)) = 1
 
-THEOREM Spec => []QC
-
+INSTANCE JupiterH
 (*********************************************************************)
 (* Strong Eventual Consistency (SEC)                                 *)
 (*********************************************************************)
 =============================================================================
 \* Modification History
-\* Last modified Sun Sep 09 10:05:29 CST 2018 by hengxin
+\* Last modified Tue Sep 11 21:06:16 CST 2018 by hengxin
 \* Created Sat Jun 23 17:14:18 CST 2018 by hengxin

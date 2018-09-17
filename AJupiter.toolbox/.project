@@ -51,6 +51,21 @@
 			<locationURI>PARENT-1-PROJECT_LOC/CSComm.tla</locationURI>
 		</link>
 		<link>
+			<name>Jupiter.tla</name>
+			<type>1</type>
+			<location>/home/hengxin/github-projects/tlaplus-lamport-projects/tlaplus-projects/Hengfeng-Wei/Wei-jupiter-tla/Jupiter.tla</location>
+		</link>
+		<link>
+			<name>JupiterH.tla</name>
+			<type>1</type>
+			<location>/home/hengxin/github-projects/tlaplus-lamport-projects/tlaplus-projects/Hengfeng-Wei/Wei-jupiter-tla/JupiterH.tla</location>
+		</link>
+		<link>
+			<name>JupiterInterface.tla</name>
+			<type>1</type>
+			<location>/home/hengxin/github-projects/tlaplus-lamport-projects/tlaplus-projects/Hengfeng-Wei/Wei-jupiter-tla/JupiterInterface.tla</location>
+		</link>
+		<link>
 			<name>OT.tla</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/OT.tla</locationURI>
