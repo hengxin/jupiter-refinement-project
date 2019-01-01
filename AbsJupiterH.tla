@@ -1,14 +1,11 @@
 ---------------------------- MODULE AbsJupiterH ----------------------------
-(*
-AbsJupiter with a history of all list states across the system.
-*)
-EXTENDS AbsJupiter 
+EXTENDS AbsJupiter
 -------------------------------------------------------------
 VARIABLE list
 varsH == <<vars, list>>
-
-TypeOKH == TypeOK /\ (list \subseteq List)
 -------------------------------------------------------------
+TypeOKH == TypeOK /\ (list \subseteq List)
+
 InitH == Init /\ list = {InitState}
 
 DoH(c) == Do(c) /\ list' = list \cup {state'[c]}
@@ -36,5 +33,5 @@ WLSpec == \* The weak list specification
 THEOREM SpecH => WLSpec
 =============================================================================
 \* Modification History
-\* Last modified Mon Dec 31 20:38:09 CST 2018 by hengxin
+\* Last modified Tue Jan 01 10:22:57 CST 2019 by hengxin
 \* Created Sat Dec 15 09:00:46 CST 2018 by hengxin

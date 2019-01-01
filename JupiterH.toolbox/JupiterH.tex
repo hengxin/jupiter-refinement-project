@@ -940,63 +940,89 @@
 \tlatex
 \setboolean{shading}{true}
  \@x{\makebox[0pt][r]{\scriptsize 1\hspace{1em}}}\moduleLeftDash\@xx{
- {\MODULE} AbsJupiterH}\moduleRightDash\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 2\hspace{1em}} {\EXTENDS} AbsJupiter}%
-\@x{\makebox[0pt][r]{\scriptsize 3\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 4\hspace{1em}} {\VARIABLE} list}%
- \@x{\makebox[0pt][r]{\scriptsize 5\hspace{1em}} varsH \.{\defeq} {\langle}
- vars ,\, list {\rangle}}%
+ {\MODULE} JupiterH}\moduleRightDash\@xx{}%
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+ Jupiter with a history variable (\ensuremath{i.e}., list) collecting all list
+ states across the system.
+\end{cpar}%
+\end{lcom}%
+\@x{\makebox[0pt][r]{\scriptsize 5\hspace{1em}} {\EXTENDS} JupiterInterface}%
 \@x{\makebox[0pt][r]{\scriptsize 6\hspace{1em}}}\midbar\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 7\hspace{1em}} TypeOKH \.{\defeq} TypeOK
- \.{\land} ( list \.{\subseteq} List )}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 9\hspace{1em}} InitH \.{\defeq} Init
- \.{\land} list \.{=} \{ InitState \}}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 11\hspace{1em}} DoH ( c ) \.{\defeq} Do ( c
- ) \.{\land} list \.{'} \.{=} list \.{\cup} \{ state \.{'} [ c ] \}}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 13\hspace{1em}} RevH ( c ) \.{\defeq} Rev (
- c ) \.{\land} list \.{'} \.{=} list \.{\cup} \{ state \.{'} [ c ] \}}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 15\hspace{1em}} SRevH \.{\defeq} SRev
- \.{\land} list \.{'} \.{=} list \.{\cup} \{ state \.{'} [ Server ] \}}%
+\@x{\makebox[0pt][r]{\scriptsize 7\hspace{1em}} {\CONSTANTS}}%
+\@x{\makebox[0pt][r]{\scriptsize 8\hspace{1em}}\@s{16.4} TypeOK ,\,}%
+\@x{\makebox[0pt][r]{\scriptsize 9\hspace{1em}}\@s{16.4} Init ,\, Next ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 10\hspace{1em}}\@s{16.4} Do ( \_ ) ,\, Rev (
+ \_ ) ,\, SRev ,\,}%
+\@x{\makebox[0pt][r]{\scriptsize 11\hspace{1em}}\@s{16.4} Msg ,\,}%
+\@x{\makebox[0pt][r]{\scriptsize 12\hspace{1em}}\@s{16.4} Vars}%
+\@x{\makebox[0pt][r]{\scriptsize 13\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 14\hspace{1em}} {\VARIABLES} list}%
+ \@x{\makebox[0pt][r]{\scriptsize 15\hspace{1em}} varsH \.{\defeq} {\langle}
+ Vars ,\, list {\rangle}}%
 \@x{\makebox[0pt][r]{\scriptsize 16\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 17\hspace{1em}} NextH \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 18\hspace{1em}}\@s{16.4} \.{\lor} \E\, c
- \.{\in} Client \.{:} DoH ( c ) \.{\lor} RevH ( c )}%
-\@x{\makebox[0pt][r]{\scriptsize 19\hspace{1em}}\@s{16.4} \.{\lor} SRevH}%
+\@x{\makebox[0pt][r]{\scriptsize 17\hspace{1em}} TypeOKH \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 18\hspace{1em}}\@s{16.4} \.{\land} TypeOK}%
+ \@x{\makebox[0pt][r]{\scriptsize 19\hspace{1em}}\@s{16.4} \.{\land} ( list
+ \.{\subseteq} List )}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 21\hspace{1em}} FairnessH \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 22\hspace{1em}}\@s{16.4} {\WF}_{ varsH} (
+\@x{\makebox[0pt][r]{\scriptsize 21\hspace{1em}} InitH \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 22\hspace{1em}}\@s{16.4} \.{\land} Init}%
+ \@x{\makebox[0pt][r]{\scriptsize 23\hspace{1em}}\@s{16.4} \.{\land} list
+ \.{=} \{ InitState \}}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 25\hspace{1em}} DoH ( c ) \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 26\hspace{1em}}\@s{25.62} \.{\land} Do ( c
+ )}%
+ \@x{\makebox[0pt][r]{\scriptsize 27\hspace{1em}}\@s{25.62} \.{\land} list
+ \.{'} \.{=} list \.{\cup} \{ state \.{'} [ c ] \}}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 29\hspace{1em}} RevH ( c ) \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 30\hspace{1em}}\@s{25.05} \.{\land} Rev ( c
+ )}%
+ \@x{\makebox[0pt][r]{\scriptsize 31\hspace{1em}}\@s{25.05} \.{\land} list
+ \.{'} \.{=} list \.{\cup} \{ state \.{'} [ c ] \}}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 33\hspace{1em}} SRevH \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 34\hspace{1em}}\@s{16.4} \.{\land} SRev}%
+ \@x{\makebox[0pt][r]{\scriptsize 35\hspace{1em}}\@s{16.4} \.{\land} list
+ \.{'} \.{=} list \.{\cup} \{ state \.{'} [ Server ] \}}%
+\@x{\makebox[0pt][r]{\scriptsize 36\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 37\hspace{1em}} NextH \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 38\hspace{1em}}\@s{16.4} \.{\lor} \E\, c
+ \.{\in} Client \.{:} DoH ( c ) \.{\lor} RevH ( c )}%
+\@x{\makebox[0pt][r]{\scriptsize 39\hspace{1em}}\@s{16.4} \.{\lor} SRevH}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 41\hspace{1em}} FairnessH \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 42\hspace{1em}}\@s{16.4} {\WF}_{ varsH} (
  SRevH \.{\lor} \E\, c \.{\in} Client \.{:} RevH ( c ) )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 24\hspace{1em}} SpecH \.{\defeq} InitH
+ \@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}} SpecH \.{\defeq} InitH
  \.{\land} {\Box} [ NextH ]_{ varsH}}%
 \@y{\@s{0}%
  \ensuremath{\.{\land} FairnessH
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 25\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 26\hspace{1em}} WLSpec \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 45\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}} WLSpec \.{\defeq}}%
 \@y{\@s{0}%
  The weak list specification
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 27\hspace{1em}}\@s{16.4} Comm ( Cop )
+ \@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}}\@s{16.4} Comm ( Msg )
  {\bang} EmptyChannel}%
- \@x{\makebox[0pt][r]{\scriptsize 28\hspace{1em}}\@s{45.78} \.{\implies} \A\,
+ \@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}}\@s{45.78} \.{\implies} \A\,
  l1 ,\, l2 \.{\in} list \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 29\hspace{1em}}\@s{65.44} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 49\hspace{1em}}\@s{65.44} \.{\land}
  Injective ( l1 )}%
- \@x{\makebox[0pt][r]{\scriptsize 30\hspace{1em}}\@s{65.44} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 50\hspace{1em}}\@s{65.44} \.{\land}
  Injective ( l2 )}%
- \@x{\makebox[0pt][r]{\scriptsize 31\hspace{1em}}\@s{65.44} \.{\land}
+ \@x{\makebox[0pt][r]{\scriptsize 51\hspace{1em}}\@s{65.44} \.{\land}
  Compatible ( l1 ,\, l2 )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 33\hspace{1em}} {\THEOREM} SpecH
+ \@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}} {\THEOREM} SpecH
  \.{\implies} WLSpec}%
-\@x{\makebox[0pt][r]{\scriptsize 34\hspace{1em}}}\bottombar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1004,12 +1030,12 @@
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Tue}
- \ensuremath{Jan} 01 10:22:57 \ensuremath{CST} 2019 by \ensuremath{hengxin
+ \ensuremath{Jan} 01 10:37:37 \ensuremath{CST} 2019 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Created Sat \ensuremath{Dec} 15 09:00:46
- \ensuremath{CST} 2018 by \ensuremath{hengxin
+ \ensuremath{\.{\,\backslash\,}}* Created \ensuremath{Tue} \ensuremath{Jan} 01
+ 09:56:25 \ensuremath{CST} 2019 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \end{lcom}%
