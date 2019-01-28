@@ -1,7 +1,4 @@
 ------------------------------- MODULE CSComm -------------------------------
-(* 
-Specification of communication in a Client-Server system model.
-*)
 EXTENDS SequenceUtils
 -----------------------------------------------------------------------------
 CONSTANTS
@@ -10,21 +7,21 @@ CONSTANTS
     Msg     \* the set of messages
 -----------------------------------------------------------------------------
 VARIABLES
-    cincoming,  \* cincoming[c]: incoming channel at client c \in Client
-    sincoming   \* incoming channel at the Server
+    cincoming,  \* cincoming[c]: incoming FIFO channel at client c \in Client
+    sincoming   \* incoming FIFO channel at the Server
 -----------------------------------------------------------------------------
 TypeOK == 
     /\ cincoming \in [Client -> Seq(Msg)]
     /\ sincoming \in Seq(Msg)
------------------------------------------------------------------------------
+
 Init == 
     /\ cincoming = [c \in Client |-> <<>>]
     /\ sincoming = <<>>
 
 EmptyChannel == Init
 -----------------------------------------------------------------------------
-CSend(msg) == \* A client sends a message msg to the Server.
-    /\ sincoming' = Append(sincoming, msg)
+CSend(m) == \* A client sends a message m to the Server.
+    /\ sincoming' = Append(sincoming, m)
     /\ UNCHANGED cincoming
 
 CRev(c) == \* Client c receives and consumes a message from the Server.                  
@@ -32,22 +29,17 @@ CRev(c) == \* Client c receives and consumes a message from the Server.
     /\ cincoming' = [cincoming EXCEPT ![c] = Tail(@)]
     /\ UNCHANGED sincoming
 -----------------------------------------------------------------------------
-(* 
-SRev/SSend below is often used as a subaction. No UNCHANGED in their definitions.                                             
-*)
 SRev == \* The Server receives and consumes a message.      
     /\ sincoming # <<>>
     /\ sincoming' = Tail(sincoming)
 
-SSend(c, cmsg) == \* The Server sents a message cmsg to each client other than c \in Client.
-    /\ cincoming' = [cl \in Client |->
-                        IF cl = c
-                        THEN cincoming[cl]
-                        ELSE Append(cincoming[cl], cmsg[cl])]
+SSend(c, cm) == \* The Server sents a message cm[cl] to client cl (other than c).
+    cincoming' = [cl \in Client |-> IF cl = c THEN cincoming[cl] 
+                                    ELSE Append(cincoming[cl], cm[cl])]
 
-SSendSame(c, msg) == \* The Server broadcasts the message msg to all clients other than c \in Client.
-    /\ SSend(c, [cl \in Client |-> msg])
+SSendSame(c, m) == \* The Server broadcasts the message m to all clients other than c.
+    SSend(c, [cl \in Client |-> m])
 =============================================================================
 \* Modification History
-\* Last modified Wed Jan 02 14:37:41 CST 2019 by hengxin
+\* Last modified Sat Jan 19 16:28:48 CST 2019 by hengxin
 \* Created Sun Jun 24 10:25:34 CST 2018 by hengxin

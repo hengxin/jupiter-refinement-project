@@ -23,15 +23,14 @@ FairnessH ==
     
 SpecH == InitH /\ [][NextH]_varsH \* /\ FairnessH
 -------------------------------------------------------------
-WLSpec == \* The weak list specification 
-    Comm!EmptyChannel 
-        => \A l1, l2 \in list: 
-            /\ Injective(l1) 
-            /\ Injective(l2) 
-            /\ Compatible(l1, l2)
+WLSpec == \* The weak list specification
+    \A l1, l2 \in list: 
+        /\ Injective(l1) \* no duplicate elements
+        /\ Injective(l2) \* true due to our distinctness assumption
+        /\ Compatible(l1, l2)
 
-THEOREM SpecH => WLSpec
+THEOREM SpecH => []WLSpec
 =============================================================================
 \* Modification History
-\* Last modified Wed Jan 02 21:02:57 CST 2019 by hengxin
+\* Last modified Mon Jan 28 20:07:24 CST 2019 by hengxin
 \* Created Sat Dec 15 09:00:46 CST 2018 by hengxin

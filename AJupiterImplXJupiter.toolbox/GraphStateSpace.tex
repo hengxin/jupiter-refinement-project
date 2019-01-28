@@ -973,7 +973,7 @@
  edge\@s{1.53} \.{\subseteq} [ from \.{:} G . node ,\, to \.{:} G . node ,\,
  cop \.{:} Cop ]}%
 \@y{\@s{0}%
- Each edge is labeled with a \ensuremath{Cop} operation.
+ Labeled with a \ensuremath{Cop} operation.
 }%
 \@xx{}%
 \@pvspace{8.0pt}%
@@ -1008,17 +1008,17 @@
  xFormHelper ( \_ ,\, \_ ,\, \_ ,\, \_ )}%
  \@x{\makebox[0pt][r]{\scriptsize 22\hspace{1em}}\@s{40.89} xFormHelper ( uh
  ,\, vh ,\, coph ,\, xss ) \.{\defeq}}%
-\@y{\@s{0}%
- \ensuremath{xss}: \ensuremath{eXtra} \ensuremath{ss} created during
- transformation
-}%
-\@xx{}%
  \@x{\makebox[0pt][r]{\scriptsize 23\hspace{1em}}\@s{57.29} {\IF} uh \.{=} ds
  [ r ]}%
  \@x{\makebox[0pt][r]{\scriptsize 24\hspace{1em}}\@s{57.29} \.{\THEN} [ xcop
  \.{\mapsto} coph ,\,}%
  \@x{\makebox[0pt][r]{\scriptsize 25\hspace{1em}}\@s{91.38} xss \.{\mapsto}
  xss ,\,}%
+\@y{\@s{0}%
+ \ensuremath{xss}: \ensuremath{eXtra} \ensuremath{ss} created during
+ transformation
+}%
+\@xx{}%
  \@x{\makebox[0pt][r]{\scriptsize 26\hspace{1em}}\@s{91.38} lss\@s{2.08}
  \.{\mapsto} [ node \.{\mapsto} \{ vh \} ,\,}%
  \@x{\makebox[0pt][r]{\scriptsize 27\hspace{1em}}\@s{123.35} edge\@s{1.53}
@@ -1057,7 +1057,7 @@
  \@x{\makebox[0pt][r]{\scriptsize 43\hspace{1em}} xFormCopCops ( cop ,\, cops
  ) \.{\defeq}}%
 \@y{\@s{0}%
- Transform cop against cops (a sequence of \ensuremath{Cop}) on state space.
+ Transform cop against cops on state space.
 }%
 \@xx{}%
  \@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}}\@s{16.4} \.{\LET}
@@ -1069,45 +1069,54 @@
  \@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}}\@s{77.69} v\@s{0.45}
  \.{\defeq} u \.{\cup} \{ coph . oid \}}%
  \@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}}\@s{61.39} uvSS\@s{0.02}
- \.{\defeq} [ node \.{\mapsto} \{ u ,\, v \} ,\, edge \.{\mapsto} \{ [ from
- \.{\mapsto} u ,\, to \.{\mapsto} v ,\, cop \.{\mapsto} coph ] \} ]}%
- \@x{\makebox[0pt][r]{\scriptsize 49\hspace{1em}}\@s{61.39} \.{\IN} {\IF}
- copsh \.{=} {\langle} {\rangle} \.{\THEN} [ xcop \.{\mapsto} coph ,\, xss
+ \.{\defeq} [ node \.{\mapsto} \{ u ,\, v \} ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 49\hspace{1em}}\@s{105.49} edge\@s{1.53}
+ \.{\mapsto} \{ [ from \.{\mapsto} u ,\, to \.{\mapsto} v ,\, cop \.{\mapsto}
+ coph ] \} ]}%
+ \@x{\makebox[0pt][r]{\scriptsize 50\hspace{1em}}\@s{61.39} \.{\IN} {\IF}
+ copsh \.{=} {\langle} {\rangle} \.{\THEN} [ xcop \.{\mapsto} coph ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 51\hspace{1em}}\@s{177.53} xss\@s{1.84}
  \.{\mapsto} xss \.{\oplus} uvSS ,\, lss \.{\mapsto} uvSS ]}%
- \@x{\makebox[0pt][r]{\scriptsize 50\hspace{1em}}\@s{81.79} \.{\ELSE} \.{\LET}
+ \@x{\makebox[0pt][r]{\scriptsize 52\hspace{1em}}\@s{81.79} \.{\ELSE} \.{\LET}
  copprimeh \.{\defeq} Head ( copsh )}%
- \@x{\makebox[0pt][r]{\scriptsize 51\hspace{1em}}\@s{145.81} uprime\@s{1.77}
+ \@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}}\@s{145.81} uprime\@s{1.77}
  \.{\defeq} u \.{\cup} \{ copprimeh . oid \}}%
- \@x{\makebox[0pt][r]{\scriptsize 52\hspace{1em}}\@s{145.81} vprime\@s{2.53}
+ \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}}\@s{145.81} vprime\@s{2.53}
  \.{\defeq} u \.{\cup} \{ coph . oid ,\, copprimeh . oid \}}%
- \@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}}\@s{133.51}
+ \@x{\makebox[0pt][r]{\scriptsize 55\hspace{1em}}\@s{133.51}
  coph2copprimeh\@s{4.10} \.{\defeq} COT ( coph ,\, copprimeh )}%
- \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}}\@s{137.61} copprimeh2coph
+ \@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}}\@s{137.61} copprimeh2coph
  \.{\defeq} COT ( copprimeh ,\, coph )}%
- \@x{\makebox[0pt][r]{\scriptsize 55\hspace{1em}}\@s{117.21} \.{\IN}
- xFormCopCopsSSHelper ( coph2copprimeh ,\, Tail ( copsh ) ,\,}%
- \@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}}\@s{149.91} xss \.{\oplus} [
+ \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}}\@s{117.21} \.{\IN}
+ xFormCopCopsSSHelper ( coph2copprimeh ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{149.91} Tail ( copsh )
+ ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{149.91} xss \.{\oplus} [
  node \.{\mapsto} \{ u ,\, v \} ,\,}%
- \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}}\@s{178.54} edge\@s{1.53}
+ \@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}}\@s{178.54} edge\@s{1.53}
  \.{\mapsto} \{ [ from \.{\mapsto} u ,\, to \.{\mapsto} v ,\, cop \.{\mapsto}
  coph ] ,\,}%
- \@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{219.78} [ from
- \.{\mapsto} u ,\, to \.{\mapsto} uprime ,\, cop \.{\mapsto} copprimeh ] ,\,}%
- \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{219.78} [ from
- \.{\mapsto} v ,\, to\@s{0.45} \.{\mapsto} vprime ,\, cop\@s{0.76}
+ \@x{\makebox[0pt][r]{\scriptsize 61\hspace{1em}}\@s{219.78} [ from
+ \.{\mapsto} u ,\, to \.{\mapsto} uprime ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 62\hspace{1em}}\@s{226.66} cop\@s{1.78}
+ \.{\mapsto} copprimeh ] ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 63\hspace{1em}}\@s{219.78} [ from
+ \.{\mapsto} v ,\, to \.{\mapsto} vprime ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 64\hspace{1em}}\@s{226.66} cop\@s{1.78}
  \.{\mapsto} copprimeh2coph ] \} ] )}%
- \@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
+ \@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
  xFormCopCopsSSHelper ( cop ,\, cops ,\, EmptySS )}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 62\hspace{1em}} xFormCopCopsShift ( cop ,\,
+ \@x{\makebox[0pt][r]{\scriptsize 67\hspace{1em}} xFormCopCopsShift ( cop ,\,
  cops ,\, shift ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 68\hspace{1em}}\@s{99.97}}%
 \@y{\@s{0}%
  shifting the first shift elements out of cops
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 63\hspace{1em}}\@s{16.4} xFormCopCops ( cop
+ \@x{\makebox[0pt][r]{\scriptsize 69\hspace{1em}}\@s{16.4} xFormCopCops ( cop
  ,\, SubSeq ( cops ,\, shift \.{+} 1 ,\, Len ( cops ) ) )}%
-\@x{\makebox[0pt][r]{\scriptsize 64\hspace{1em}}}\bottombar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 70\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1115,7 +1124,7 @@
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  \ensuremath{\.{\,\backslash\,}}* Last modified Sat \ensuremath{Jan} 19
- 10:49:59 \ensuremath{CST} 2019 by \ensuremath{hengxin
+ 16:32:38 \ensuremath{CST} 2019 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%

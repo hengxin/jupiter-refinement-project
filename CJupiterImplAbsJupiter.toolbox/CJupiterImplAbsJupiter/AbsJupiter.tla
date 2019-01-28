@@ -69,9 +69,14 @@ Spec == Init /\ [][Next]_vars \* /\ Fairness
 -----------------------------------------------------------------------------
 Compactness == 
     Comm!EmptyChannel => Cardinality(Range(copss)) = 1
-    
-THEOREM Spec => Compactness
+
+THEOREM Spec => []Compactness
+
+EC == \A r1, r2 \in Replica: 
+        ds[r1] = ds[r2] => state[r1] = state[r2]
+
+THEOREM Spec => []EC
 =============================================================================
 \* Modification History
-\* Last modified Thu Jan 10 08:34:12 CST 2019 by hengxin
+\* Last modified Tue Jan 22 14:35:15 CST 2019 by hengxin
 \* Created Wed Dec 05 19:55:52 CST 2018 by hengxin

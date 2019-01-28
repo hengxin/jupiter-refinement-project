@@ -943,8 +943,8 @@
  {\MODULE} AbsJupiter}\moduleRightDash\@xx{}%
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- Abstract \ensuremath{Jupiter}, inspired by the \ensuremath{COT} algorithm
- proposed by Sun and Sun; see \ensuremath{TPDS\.{'}}2009.
+ Abstract \ensuremath{Jupiter}, inspired by the COT algorithm proposed by Sun
+ and Sun; see \ensuremath{TPDS\.{'}}2009.
 \end{cpar}%
 \end{lcom}%
  \@x{\makebox[0pt][r]{\scriptsize 5\hspace{1em}} {\EXTENDS} JupiterSerial ,\,
@@ -1076,21 +1076,46 @@
 }}%
 \@xx{}%
 \@x{\makebox[0pt][r]{\scriptsize 69\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 70\hspace{1em}} Compactness \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}}\@s{16.4} Comm {\bang}
- EmptyChannel \.{\implies} Cardinality ( Range ( copss ) ) \.{=} 1}%
+\@x{\makebox[0pt][r]{\scriptsize 70\hspace{1em}} QC \.{\defeq}}%
+\@y{\@s{0}%
+ Quiescent Consistency
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}}\@s{20.37} Comm {\bang}
+ EmptyChannel \.{\implies} Cardinality ( Range ( state ) ) \.{=} 1}%
+ \@x{\makebox[0pt][r]{\scriptsize 72\hspace{1em}} {\THEOREM} Spec \.{\implies}
+ {\Box} QC}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 73\hspace{1em}} {\THEOREM} Spec \.{\implies}
- Compactness}%
-\@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}}}\bottombar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}} SEC \.{\defeq}}%
+\@y{\@s{0}%
+ Strong Eventual Consistency
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 75\hspace{1em}}\@s{21.01} \A\, r1 ,\, r2
+ \.{\in} Replica \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 76\hspace{1em}}\@s{32.33} ds [ r1 ] \.{=} ds
+ [ r2 ] \.{\implies} state [ r1 ] \.{=} state [ r2 ]}%
+ \@x{\makebox[0pt][r]{\scriptsize 77\hspace{1em}} {\THEOREM} Spec \.{\implies}
+ {\Box} SEC}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 79\hspace{1em}} Compactness \.{\defeq}}%
+\@y{\@s{0}%
+ Compactness of state space
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 80\hspace{1em}}\@s{16.4} Comm {\bang}
+ EmptyChannel \.{\implies} Cardinality ( Range ( copss ) ) \.{=} 1}%
+ \@x{\makebox[0pt][r]{\scriptsize 81\hspace{1em}} {\THEOREM} Spec \.{\implies}
+ {\Box} Compactness}%
+\@x{\makebox[0pt][r]{\scriptsize 82\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 \ensuremath{\.{\,\backslash\,}}* Modification History
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Thu}
- \ensuremath{Jan} 10 08:34:12 \ensuremath{CST} 2019 by \ensuremath{hengxin
+ \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Mon}
+ \ensuremath{Jan} 28 20:06:39 \ensuremath{CST} 2019 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%

@@ -953,8 +953,8 @@
 \@x{\makebox[0pt][r]{\scriptsize 7\hspace{1em}} {\VARIABLES}}%
 \@x{\makebox[0pt][r]{\scriptsize 8\hspace{1em}}\@s{16.4} css\@s{12.29}}%
 \@y{\@s{0}%
- \ensuremath{css[r]}: the \ensuremath{n}-ary ordered state space at replica
- \ensuremath{r \.{\in} Replica
+ \ensuremath{css[r]}: the n-ary ordered state space at replica \ensuremath{r
+ \.{\in} Replica
 }}%
 \@xx{}%
 \@pvspace{8.0pt}%
@@ -980,23 +980,19 @@
  [ r \.{\in} Replica \.{\mapsto} EmptySS ]}%
 \@x{\makebox[0pt][r]{\scriptsize 23\hspace{1em}}}\midbar\@xx{}%
  \@x{\makebox[0pt][r]{\scriptsize 24\hspace{1em}} NextEdge ( r ,\, u ,\, ss )
- \.{\defeq}\@s{16.4}}%
+ \.{\defeq}}%
 \@y{\@s{0}%
- Return the first outgoing edge from \ensuremath{u
+ Return the first outgoing edge from \ensuremath{u} in \ensuremath{ss} at
+ replica \ensuremath{r
 }}%
 \@xx{}%
  \@x{\makebox[0pt][r]{\scriptsize 25\hspace{1em}}\@s{16.4} {\CHOOSE} e \.{\in}
- ss . edge \.{:}\@s{4.51}}%
-\@y{\@s{0}%
- in \ensuremath{n}-ary ordered space \ensuremath{ss} at replica
- \ensuremath{r}.
-}%
-\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 26\hspace{1em}}\@s{32.8} \.{\land}\@s{11.17}
- e . from \.{=} u}%
- \@x{\makebox[0pt][r]{\scriptsize 27\hspace{1em}}\@s{32.8} \.{\land}\@s{11.17}
- \A\, ue \.{\in} ss . edge \.{\,\backslash\,} \{ e \} \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 28\hspace{1em}}\@s{59.18} ( ue . from \.{=}
+ ss . edge \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 26\hspace{1em}}\@s{32.8} \.{\land} e . from
+ \.{=} u}%
+ \@x{\makebox[0pt][r]{\scriptsize 27\hspace{1em}}\@s{32.8} \.{\land} \A\, ue
+ \.{\in} ss . edge \.{\,\backslash\,} \{ e \} \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 28\hspace{1em}}\@s{52.11} ( ue . from \.{=}
  u ) \.{\implies} tb ( e . cop . oid ,\, ue . cop . oid ,\, serial [ r ] )}%
 \@pvspace{8.0pt}%
  \@x{\makebox[0pt][r]{\scriptsize 30\hspace{1em}} Perform ( r ,\, cop )
@@ -1004,7 +1000,7 @@
  \@x{\makebox[0pt][r]{\scriptsize 31\hspace{1em}}\@s{16.4} \.{\LET} xform
  \.{\defeq} xForm ( NextEdge ,\, r ,\, cop ,\, css [ r ] )\@s{4.1}}%
 \@y{\@s{0}%
- \ensuremath{xform}: [\ensuremath{xcop}, \ensuremath{xss}, \ensuremath{lss}]
+ \ensuremath{xform}: [\ensuremath{xcop}, \ensuremath{xss}, lss]
 }%
 \@xx{}%
  \@x{\makebox[0pt][r]{\scriptsize 32\hspace{1em}}\@s{16.4} \.{\IN} \.{\land}
@@ -1086,7 +1082,7 @@
  EmptyChannel \.{\implies} Cardinality ( Range ( css ) ) \.{=} 1}%
 \@pvspace{8.0pt}%
  \@x{\makebox[0pt][r]{\scriptsize 73\hspace{1em}} {\THEOREM} Spec \.{\implies}
- Compactness}%
+ {\Box} Compactness}%
 \@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
@@ -1094,8 +1090,8 @@
 \ensuremath{\.{\,\backslash\,}}* Modification History
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Last modified Sat \ensuremath{Jan} 12
- 15:11:38 \ensuremath{CST} 2019 by \ensuremath{hengxin
+ \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Mon}
+ \ensuremath{Jan} 28 20:08:29 \ensuremath{CST} 2019 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
