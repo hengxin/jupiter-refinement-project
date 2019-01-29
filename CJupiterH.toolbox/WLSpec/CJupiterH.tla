@@ -1,5 +1,5 @@
----------------------------- MODULE AbsJupiterH ----------------------------
-EXTENDS AbsJupiter 
+----------------------------- MODULE CJupiterH -----------------------------
+EXTENDS CJupiter
 -------------------------------------------------------------
 VARIABLE list
 varsH == <<vars, list>>
@@ -17,20 +17,21 @@ SRevH == SRev /\ list' = list \cup {state'[Server]}
 NextH == 
     \/ \E c \in Client: DoH(c) \/ RevH(c)
     \/ SRevH
-
+    
 FairnessH ==
     WF_varsH(SRevH \/ \E c \in Client: RevH(c))
-    
-SpecH == InitH /\ [][NextH]_varsH \* /\ FairnessH
--------------------------------------------------------------
-WLSpec == \* The weak list specification
-    \A l1, l2 \in list: 
-        /\ Injective(l1) \* no duplicate elements
-        /\ Injective(l2) \* true due to our distinctness assumption
-        /\ Compatible(l1, l2)
 
-THEOREM SpecH => []WLSpec
+SpecH == InitH /\ [][NextH]_varsH \* /\ FairenessH
+-------------------------------------------------------------
+WLSpec == \* The weak list specification 
+    Comm!EmptyChannel 
+        => \A l1, l2 \in list: 
+            /\ Injective(l1) 
+            /\ Injective(l2) 
+            /\ Compatible(l1, l2)
+
+THEOREM SpecH => WLSpec
 =============================================================================
 \* Modification History
-\* Last modified Mon Jan 28 20:07:24 CST 2019 by hengxin
-\* Created Sat Dec 15 09:00:46 CST 2018 by hengxin
+\* Last modified Wed Jan 02 21:02:27 CST 2019 by hengxin
+\* Created Tue Oct 09 09:28:48 CST 2018 by hengxin

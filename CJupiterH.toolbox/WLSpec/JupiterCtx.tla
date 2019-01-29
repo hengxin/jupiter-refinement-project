@@ -11,7 +11,7 @@ VARIABLES
 ctxVars == <<cseq, ds>>
 -----------------------------------------------------------------------------
 Oid == [c: Client, seq: Nat]  \* operation identifier
-Cop == [op: Op \cup {Nop}, oid: Oid, ctx: SUBSET Oid] \* context-based op
+Cop == [op: Op \cup {Nop}, oid: Oid, ctx: SUBSET Oid] \* contexted-based op
 
 ClientOf(cop) == cop.oid.c
 
@@ -40,10 +40,7 @@ RevCtx(c) ==
 SRevCtx ==
     /\ UNCHANGED cseq
     /\ UpdateDS(Server, Head(sincoming).oid)
------------------------------------------------------------------------------    
-ClientConstraint == \* Each client generates at most 2 operations. 
-    \forall c \in Client: cseq[c] <= 3
 =============================================================================
 \* Modification History
-\* Last modified Tue Jan 29 10:11:36 CST 2019 by hengxin
+\* Last modified Sun Jan 13 10:13:17 CST 2019 by hengxin
 \* Created Wed Dec 05 20:03:50 CST 2018 by hengxin

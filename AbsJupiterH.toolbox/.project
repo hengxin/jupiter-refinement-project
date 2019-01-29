@@ -58,7 +58,7 @@
 		<link>
 			<name>Op.tla</name>
 			<type>1</type>
-			<location>/home/hengxin/Git-Projects/github-projects/tlaplus-lamport-projects/tlaplus-projects/Hengfeng-Wei/Wei-jupiter-tla/Op.tla</location>
+			<locationURI>PARENT-1-PROJECT_LOC/Op.tla</locationURI>
 		</link>
 		<link>
 			<name>OpOperators.tla</name>
@@ -73,7 +73,7 @@
 		<link>
 			<name>SetStateSpace.tla</name>
 			<type>1</type>
-			<location>/home/hengxin/Git-Projects/github-projects/tlaplus-lamport-projects/tlaplus-projects/Hengfeng-Wei/Wei-jupiter-tla/SetStateSpace.tla</location>
+			<locationURI>PARENT-1-PROJECT_LOC/SetStateSpace.tla</locationURI>
 		</link>
 		<link>
 			<name>SetUtils.tla</name>
@@ -83,7 +83,7 @@
 		<link>
 			<name>SystemModel.tla</name>
 			<type>1</type>
-			<location>/home/hengxin/Git-Projects/github-projects/tlaplus-lamport-projects/tlaplus-projects/Hengfeng-Wei/Wei-jupiter-tla/SystemModel.tla</location>
+			<locationURI>PARENT-1-PROJECT_LOC/SystemModel.tla</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

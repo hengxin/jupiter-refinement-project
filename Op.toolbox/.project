@@ -16,9 +16,34 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>CSComm.tla</name>
+			<type>1</type>
+			<location>/home/hengxin/hfwei/github-projects-public/tlaplus-lamport-projects/tlaplus-projects/Hengfeng-Wei/Wei-jupiter-tla/CSComm.tla</location>
+		</link>
+		<link>
+			<name>FunctionUtils.tla</name>
+			<type>1</type>
+			<location>/home/hengxin/hfwei/github-projects-public/tlaplus-lamport-projects/tlaplus-projects/Hengfeng-Wei/Wei-jupiter-tla/FunctionUtils.tla</location>
+		</link>
+		<link>
 			<name>Op.tla</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Op.tla</locationURI>
+		</link>
+		<link>
+			<name>SequenceUtils.tla</name>
+			<type>1</type>
+			<location>/home/hengxin/hfwei/github-projects-public/tlaplus-lamport-projects/tlaplus-projects/Hengfeng-Wei/Wei-jupiter-tla/SequenceUtils.tla</location>
+		</link>
+		<link>
+			<name>SetUtils.tla</name>
+			<type>1</type>
+			<location>/home/hengxin/hfwei/github-projects-public/tlaplus-lamport-projects/tlaplus-projects/Hengfeng-Wei/Wei-jupiter-tla/SetUtils.tla</location>
+		</link>
+		<link>
+			<name>SystemModel.tla</name>
+			<type>1</type>
+			<location>/home/hengxin/hfwei/github-projects-public/tlaplus-lamport-projects/tlaplus-projects/Hengfeng-Wei/Wei-jupiter-tla/SystemModel.tla</location>
 		</link>
 	</linkedResources>
 </projectDescription>

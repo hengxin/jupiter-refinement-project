@@ -21,10 +21,10 @@ Init ==
     /\ InitSerial
     /\ css = [r \in Replica |-> EmptySS]
 -----------------------------------------------------------------------------
-NextEdge(r, u, ss) == \* Return the first outgoing edge from u in ss at replica r
-    CHOOSE e \in ss.edge: 
-        /\e.from = u 
-        /\\A ue \in ss.edge \ {e}: 
+NextEdge(r, u, ss) ==     \* Return the first outgoing edge from u 
+    CHOOSE e \in ss.edge: \* in n-ary ordered space ss at replica r.
+        /\ e.from = u 
+        /\ \A ue \in ss.edge \ {e}: 
             (ue.from = u) => tb(e.cop.oid, ue.cop.oid, serial[r])
     
 Perform(r, cop) == 
@@ -70,8 +70,8 @@ Spec == Init /\ [][Next]_vars \* /\ Fairness
 Compactness == \* Compactness of CJupiter: the CSSes at all replicas are the same.
     Comm!EmptyChannel => Cardinality(Range(css)) = 1
 
-THEOREM Spec => []Compactness
+THEOREM Spec => Compactness
 =============================================================================
 \* Modification History
-\* Last modified Tue Jan 29 10:10:58 CST 2019 by hengxin
+\* Last modified Sat Jan 12 15:11:38 CST 2019 by hengxin
 \* Created Sat Sep 01 11:08:00 CST 2018 by hengxin
