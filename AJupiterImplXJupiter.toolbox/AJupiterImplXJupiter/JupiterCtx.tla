@@ -11,7 +11,7 @@ VARIABLES
 ctxVars == <<cseq, ds>>
 -----------------------------------------------------------------------------
 Oid == [c: Client, seq: Nat]  \* operation identifier
-Cop == [op: Op \cup {Nop}, oid: Oid, ctx: SUBSET Oid] \* contexted-based op
+Cop == [op: Op \cup {Nop}, oid: Oid, ctx: SUBSET Oid] \* context-based op
 
 ClientOf(cop) == cop.oid.c
 
@@ -42,5 +42,5 @@ SRevCtx ==
     /\ UpdateDS(Server, Head(sincoming).oid)
 =============================================================================
 \* Modification History
-\* Last modified Sun Jan 13 10:13:17 CST 2019 by hengxin
+\* Last modified Sat Jan 19 21:13:06 CST 2019 by hengxin
 \* Created Wed Dec 05 20:03:50 CST 2018 by hengxin

@@ -1,5 +1,5 @@
 ------------------------ MODULE XJupiterImplCJupiter ------------------------
-EXTENDS XJupiterExtended
+EXTENDS XJupiterExtended    \* XJupiter extended with JupiterSerial
 -----------------------------------------------------------------------------
 VARIABLES
     op2ss,  \* a function mapping an operation (identifier) 
@@ -54,5 +54,5 @@ CJ == INSTANCE CJupiter
 THEOREM SpecImpl => CJ!Spec
 =============================================================================
 \* Modification History
-\* Last modified Fri Jan 18 11:27:25 CST 2019 by hengxin
+\* Last modified Tue Jan 29 13:50:03 CST 2019 by hengxin
 \* Created Fri Oct 26 15:00:19 CST 2018 by hengxin

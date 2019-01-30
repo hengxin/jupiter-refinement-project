@@ -24,13 +24,14 @@ FairnessH ==
 SpecH == InitH /\ [][NextH]_varsH \* /\ FairnessH
 -------------------------------------------------------------
 WLSpec == \* The weak list specification
-    \A l1, l2 \in list: 
-        /\ Injective(l1) 
-        /\ Injective(l2) 
-        /\ Compatible(l1, l2)
+    Comm!EmptyChannel
+        => \A l1, l2 \in list: 
+            /\ Injective(l1) 
+            /\ Injective(l2) 
+            /\ Compatible(l1, l2)
 
 THEOREM SpecH => []WLSpec
 =============================================================================
 \* Modification History
-\* Last modified Mon Jan 28 20:09:52 CST 2019 by hengxin
+\* Last modified Wed Jan 30 21:39:16 CST 2019 by hengxin
 \* Created Wed Oct 10 15:40:13 CST 2018 by hengxin
