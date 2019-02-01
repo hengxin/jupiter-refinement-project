@@ -940,111 +940,182 @@
 \tlatex
 \setboolean{shading}{true}
  \@x{\makebox[0pt][r]{\scriptsize 1\hspace{1em}}}\moduleLeftDash\@xx{
- {\MODULE} JupiterCtx}\moduleRightDash\@xx{}%
+ {\MODULE} AbsJupiter}\moduleRightDash\@xx{}%
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- Definitions for context-based \ensuremath{Jupiter} protocols, including
- \ensuremath{AbsJupiter}, \ensuremath{CJupiter}, and \ensuremath{XJupiter}.
+ Abstract \ensuremath{Jupiter}, inspired by the COT algorithm proposed by Sun
+ and Sun; see \ensuremath{TPDS\.{'}}2009.
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 5\hspace{1em}} {\EXTENDS} JupiterInterface
- ,\, OT}%
+ \@x{\makebox[0pt][r]{\scriptsize 5\hspace{1em}} {\EXTENDS} JupiterSerial ,\,
+ SetStateSpace}%
 \@x{\makebox[0pt][r]{\scriptsize 6\hspace{1em}}}\midbar\@xx{}%
 \@x{\makebox[0pt][r]{\scriptsize 7\hspace{1em}} {\VARIABLES}}%
-\@x{\makebox[0pt][r]{\scriptsize 8\hspace{1em}}\@s{16.4} cseq ,\,\@s{4.1}}%
+\@x{\makebox[0pt][r]{\scriptsize 8\hspace{1em}}\@s{16.4} copss\@s{8.2}}%
 \@y{\@s{0}%
- \ensuremath{cseq[c]}: local sequence number at client \ensuremath{c \.{\in}
- Client
-}}%
-\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 9\hspace{1em}}\@s{16.4} ds\@s{18.45}}%
-\@y{\@s{0}%
- \ensuremath{ds[r]}: document state (\ensuremath{i.e}., a set of
- \ensuremath{Oids}) of replica \ensuremath{r \.{\in} Replica
+ \ensuremath{copss[r]}: the state space (\ensuremath{i.e}., a set) of
+ \ensuremath{Cop} maintained at replia \ensuremath{r \.{\in} Replica
 }}%
 \@xx{}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 11\hspace{1em}} ctxVars \.{\defeq} {\langle}
- cseq ,\, ds {\rangle}}%
-\@x{\makebox[0pt][r]{\scriptsize 12\hspace{1em}}}\midbar\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 13\hspace{1em}} Oid\@s{1.13} \.{\defeq} [ c
- \.{:} Client ,\, seq \.{:} Nat ]\@s{4.1}}%
-\@y{\@s{0}%
- operation identifier
-}%
-\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 14\hspace{1em}} Cop \.{\defeq} [ op \.{:} Op
- \.{\cup} \{ Nop \} ,\, oid \.{:} Oid ,\, ctx \.{:} {\SUBSET} Oid ]}%
-\@y{\@s{0}%
- context-based \ensuremath{op
-}}%
-\@xx{}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 16\hspace{1em}} ClientOf ( cop ) \.{\defeq}
- cop . oid . c}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 18\hspace{1em}} COT ( lcop ,\, rcop )
- \.{\defeq}}%
-\@y{\@s{0}%
- \ensuremath{OT} of \ensuremath{lcop \.{\in} Cop} against \ensuremath{rcop
- \.{\in} Cop
-}}%
-\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 19\hspace{1em}}\@s{27.19} [ lcop {\EXCEPT}
- {\bang} . op \.{=} OT ( lcop . op ,\, rcop . op ) ,\, {\bang} . ctx \.{=} @
- \.{\cup} \{ rcop . oid \} ]}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 21\hspace{1em}} UpdateDS ( r ,\, oid )
- \.{\defeq}}%
-\@y{\@s{0}%
- update \ensuremath{ds[r]} to include new \ensuremath{oid \.{\in} Oid
-}}%
-\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 22\hspace{1em}}\@s{16.4} ds \.{'} \.{=} [ ds
- {\EXCEPT} {\bang} [ r ] \.{=} @ \.{\cup} \{ oid \} ]}%
+ \@x{\makebox[0pt][r]{\scriptsize 10\hspace{1em}} vars \.{\defeq} {\langle}
+ intVars ,\, ctxVars ,\, serialVars ,\, copss {\rangle}}%
+\@x{\makebox[0pt][r]{\scriptsize 11\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 12\hspace{1em}} TypeOK \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 13\hspace{1em}}\@s{16.4} \.{\land}\@s{9.74}
+ TypeOKInt}%
+ \@x{\makebox[0pt][r]{\scriptsize 14\hspace{1em}}\@s{16.4} \.{\land}\@s{9.74}
+ TypeOKCtx}%
+ \@x{\makebox[0pt][r]{\scriptsize 15\hspace{1em}}\@s{16.4} \.{\land}\@s{9.74}
+ TypeOKSerial}%
+ \@x{\makebox[0pt][r]{\scriptsize 16\hspace{1em}}\@s{16.4} \.{\land}\@s{9.74}
+ copss \.{\in} [ Replica \.{\rightarrow} {\SUBSET} Cop ]}%
+\@x{\makebox[0pt][r]{\scriptsize 17\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 18\hspace{1em}} Init \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 19\hspace{1em}}\@s{16.4} \.{\land} InitInt}%
+\@x{\makebox[0pt][r]{\scriptsize 20\hspace{1em}}\@s{16.4} \.{\land} InitCtx}%
+ \@x{\makebox[0pt][r]{\scriptsize 21\hspace{1em}}\@s{16.4} \.{\land}
+ InitSerial}%
+ \@x{\makebox[0pt][r]{\scriptsize 22\hspace{1em}}\@s{16.4} \.{\land} copss
+ \.{=} [ r \.{\in} Replica \.{\mapsto} \{ \} ]}%
 \@x{\makebox[0pt][r]{\scriptsize 23\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 24\hspace{1em}} TypeOKCtx \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 25\hspace{1em}}\@s{16.4} \.{\land} cseq
- \.{\in} [ Client \.{\rightarrow} Nat ]}%
- \@x{\makebox[0pt][r]{\scriptsize 26\hspace{1em}}\@s{16.4} \.{\land} ds
- \.{\in} [ Replica \.{\rightarrow} {\SUBSET} Oid ]}%
-\@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 28\hspace{1em}} InitCtx \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 29\hspace{1em}}\@s{16.4} \.{\land} cseq
- \.{=} [ c \.{\in} Client \.{\mapsto} 1 ]}%
- \@x{\makebox[0pt][r]{\scriptsize 30\hspace{1em}}\@s{16.4} \.{\land} ds \.{=}
- [ r \.{\in} Replica \.{\mapsto} \{ \} ]}%
-\@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 32\hspace{1em}} DoCtx ( c ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 33\hspace{1em}}\@s{16.4} \.{\land} cseq
- \.{'} \.{=} [ cseq {\EXCEPT} {\bang} [ c ] \.{=} @ \.{+} 1 ]}%
- \@x{\makebox[0pt][r]{\scriptsize 34\hspace{1em}}\@s{16.4} \.{\land} UpdateDS
- ( c ,\, [ c \.{\mapsto} c ,\, seq \.{\mapsto} cseq [ c ] ] )\@s{4.1}}%
+ \@x{\makebox[0pt][r]{\scriptsize 24\hspace{1em}} NextCop ( r ,\, cop ,\, ss
+ ,\, ctx ) \.{\defeq}}%
 \@y{\@s{0}%
- \ensuremath{oid} for newly generated operation
+ Return the next \ensuremath{fcop \.{\in} Cop} against which cop is to be
+ transformed.
 }%
 \@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 25\hspace{1em}}\@s{16.4} \.{\LET} foid
+ \.{\defeq} {\CHOOSE} oid \.{\in} ctx \.{:}}%
+\@y{\@s{0}%
+ the first \ensuremath{oid} in \ensuremath{ctx} according to
+ \ensuremath{serial[r]
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 26\hspace{1em}}\@s{89.47} \A\, id \.{\in}
+ ctx \.{\,\backslash\,} \{ oid \} \.{:} tb ( oid ,\, id ,\, serial [ r ] )}%
+ \@x{\makebox[0pt][r]{\scriptsize 27\hspace{1em}}\@s{16.4} \.{\IN} {\CHOOSE}
+ fcop \.{\in} ss \.{:}}%
+\@y{\@s{0}%
+ \ensuremath{{\THEOREM}}: Existence of \ensuremath{fcop
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 28\hspace{1em}}\@s{53.19} fcop . oid \.{=}
+ foid \.{\land} fcop . ctx \.{=} cop . ctx}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 36\hspace{1em}} RevCtx ( c ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 37\hspace{1em}}\@s{16.4} \.{\land}
- {\UNCHANGED} cseq}%
- \@x{\makebox[0pt][r]{\scriptsize 38\hspace{1em}}\@s{16.4} \.{\land} UpdateDS
- ( c ,\, Head ( cincoming [ c ] ) . oid )}%
+ \@x{\makebox[0pt][r]{\scriptsize 30\hspace{1em}} Perform ( r ,\, cop )
+ \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 31\hspace{1em}}\@s{16.4} \.{\LET} xform
+ \.{\defeq} xForm ( NextCop ,\, r ,\, cop ,\, copss [ r ] )\@s{4.1}}%
+\@y{\@s{0}%
+ [\ensuremath{xcop}, \ensuremath{xss}]
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 32\hspace{1em}}\@s{16.4} \.{\IN} \.{\land}
+ copss \.{'} \.{=} [ copss {\EXCEPT} {\bang} [ r ] \.{=} xform . xss ]}%
+ \@x{\makebox[0pt][r]{\scriptsize 33\hspace{1em}}\@s{36.79} \.{\land}
+ SetNewAop ( r ,\, xform . xcop . op )}%
 \@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 40\hspace{1em}} SRevCtx \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 41\hspace{1em}}\@s{16.4} \.{\land}
- {\UNCHANGED} cseq}%
- \@x{\makebox[0pt][r]{\scriptsize 42\hspace{1em}}\@s{16.4} \.{\land} UpdateDS
- ( Server ,\, Head ( sincoming ) . oid )}%
-\@x{\makebox[0pt][r]{\scriptsize 43\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}} ClientConstraint \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 35\hspace{1em}} ClientPerform ( c ,\, cop )
+ \.{\defeq} Perform ( c ,\, cop )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 37\hspace{1em}} ServerPerform ( cop )
+ \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 38\hspace{1em}}\@s{16.4} \.{\land} Perform (
+ Server ,\, cop )}%
+ \@x{\makebox[0pt][r]{\scriptsize 39\hspace{1em}}\@s{16.4} \.{\land} Comm
+ {\bang} SSendSame ( ClientOf ( cop ) ,\, cop )}%
+\@x{\makebox[0pt][r]{\scriptsize 40\hspace{1em}}}\midbar\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 41\hspace{1em}} DoOp ( c ,\, op )\@s{5.43}
+ \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 42\hspace{1em}}\@s{26.06} \.{\LET} cop
+ \.{\defeq} [ op \.{\mapsto} op ,\, oid \.{\mapsto} [ c \.{\mapsto} c ,\, seq
+ \.{\mapsto} cseq [ c ] ] ,\, ctx \.{\mapsto} ds [ c ] ]}%
+ \@x{\makebox[0pt][r]{\scriptsize 43\hspace{1em}}\@s{26.06} \.{\IN} \.{\land}
+ ClientPerform ( c ,\, cop )}%
+ \@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}}\@s{46.46} \.{\land} Comm
+ {\bang} CSend ( cop )}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}} Do ( c ) \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}}\@s{22.34} \.{\land} DoInt (
+ DoOp ,\, c )}%
+ \@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}}\@s{22.34} \.{\land} DoCtx (
+ c )}%
+ \@x{\makebox[0pt][r]{\scriptsize 49\hspace{1em}}\@s{22.34} \.{\land} DoSerial
+ ( c )}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 51\hspace{1em}} Rev ( c ) \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 52\hspace{1em}}\@s{20.94} \.{\land} RevInt (
+ ClientPerform ,\, c )}%
+ \@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}}\@s{20.94} \.{\land} RevCtx (
+ c )}%
+ \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}}\@s{20.94} \.{\land}
+ RevSerial ( c )}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}} SRev \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}}\@s{16.4} \.{\land} SRevInt (
+ ServerPerform )}%
+\@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{16.4} \.{\land} SRevCtx}%
+ \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{16.4} \.{\land}
+ SRevSerial}%
+\@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 61\hspace{1em}} Next \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 62\hspace{1em}}\@s{16.4} \.{\lor} \E\, c
+ \.{\in} Client \.{:} Do ( c ) \.{\lor} Rev ( c )}%
+\@x{\makebox[0pt][r]{\scriptsize 63\hspace{1em}}\@s{16.4} \.{\lor} SRev}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}} Fairness \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 66\hspace{1em}}\@s{16.4} {\WF}_{ vars} (
+ SRev \.{\lor} \E\, c \.{\in} Client \.{:} Rev ( c ) )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 68\hspace{1em}} Spec \.{\defeq} Init
+ \.{\land} {\Box} [ Next ]_{ vars}}%
+\@y{\@s{0}%
+ \ensuremath{\.{\land} Fairness
+}}%
+\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 69\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 70\hspace{1em}} QC \.{\defeq}}%
+\@y{\@s{0}%
+ Quiescent Consistency
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}}\@s{20.37} Comm {\bang}
+ EmptyChannel \.{\implies} Cardinality ( Range ( state ) ) \.{=} 1}%
+ \@x{\makebox[0pt][r]{\scriptsize 72\hspace{1em}} {\THEOREM} Spec \.{\implies}
+ {\Box} QC}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}} SEC \.{\defeq}}%
+\@y{\@s{0}%
+ Strong Eventual Consistency
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 75\hspace{1em}}\@s{21.01} \A\, r1 ,\, r2
+ \.{\in} Replica \.{:}}%
+ \@x{\makebox[0pt][r]{\scriptsize 76\hspace{1em}}\@s{32.33} ds [ r1 ] \.{=} ds
+ [ r2 ] \.{\implies} state [ r1 ] \.{=} state [ r2 ]}%
+ \@x{\makebox[0pt][r]{\scriptsize 77\hspace{1em}} {\THEOREM} Spec \.{\implies}
+ {\Box} SEC}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 79\hspace{1em}} Compactness \.{\defeq}}%
+\@y{\@s{0}%
+ Compactness of state space
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 80\hspace{1em}}\@s{16.4} Comm {\bang}
+ EmptyChannel \.{\implies} Cardinality ( Range ( copss ) ) \.{=} 1}%
+ \@x{\makebox[0pt][r]{\scriptsize 81\hspace{1em}} {\THEOREM} Spec \.{\implies}
+ {\Box} Compactness}%
+\@pvspace{8.0pt}%
+\@x{\makebox[0pt][r]{\scriptsize 83\hspace{1em}} ClientConstraint \.{\defeq}}%
 \@y{\@s{0}%
  Each client generates at most 2 operations.
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 45\hspace{1em}}\@s{16.4} \forall\, c \.{\in}
+ \@x{\makebox[0pt][r]{\scriptsize 84\hspace{1em}}\@s{16.4} \forall\, c \.{\in}
  Client \.{:} cseq [ c ] \.{\leq} 3}%
-\@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}}}\bottombar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 85\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1052,12 +1123,12 @@
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Tue}
- \ensuremath{Jan} 29 10:11:36 \ensuremath{CST} 2019 by \ensuremath{hengxin
+ \ensuremath{Jan} 29 09:36:46 \ensuremath{CST} 2019 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  \ensuremath{\.{\,\backslash\,}}* Created \ensuremath{Wed} \ensuremath{Dec} 05
- 20:03:50 \ensuremath{CST} 2018 by \ensuremath{hengxin
+ 19:55:52 \ensuremath{CST} 2018 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \end{lcom}%

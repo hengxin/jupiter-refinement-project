@@ -40,7 +40,10 @@ RevCtx(c) ==
 SRevCtx ==
     /\ UNCHANGED cseq
     /\ UpdateDS(Server, Head(sincoming).oid)
+-----------------------------------------------------------------------------    
+ClientConstraint == \* Each client generates at most 2 operations. 
+    \forall c \in Client: cseq[c] <= 3
 =============================================================================
 \* Modification History
-\* Last modified Sat Jan 19 21:13:06 CST 2019 by hengxin
+\* Last modified Tue Jan 29 10:11:36 CST 2019 by hengxin
 \* Created Wed Dec 05 20:03:50 CST 2018 by hengxin

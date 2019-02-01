@@ -81,5 +81,5 @@ Compactness == \* Compactness of state space
 THEOREM Spec => []Compactness
 =============================================================================
 \* Modification History
-\* Last modified Mon Jan 28 20:06:39 CST 2019 by hengxin
+\* Last modified Tue Jan 29 10:11:54 CST 2019 by hengxin
 \* Created Wed Dec 05 19:55:52 CST 2018 by hengxin
