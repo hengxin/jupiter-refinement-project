@@ -40,7 +40,7 @@ ServerPerform(cop) ==
 -----------------------------------------------------------------------------
 DoOp(c, op) == 
     LET cop == [op |-> op, oid |-> [c |-> c, seq |-> cseq[c]], ctx |-> ds[c]]
-     IN /\ ClientPerform(c, cop)
+    IN  /\ ClientPerform(c, cop)
         /\ Comm!CSend(cop)
 
 Do(c) == 
@@ -73,5 +73,5 @@ Compactness == \* Compactness of CJupiter: the CSSes at all replicas are the sam
 THEOREM Spec => []Compactness
 =============================================================================
 \* Modification History
-\* Last modified Tue Jan 29 10:10:58 CST 2019 by hengxin
+\* Last modified Sat Feb 02 12:06:40 CST 2019 by hengxin
 \* Created Sat Sep 01 11:08:00 CST 2018 by hengxin
