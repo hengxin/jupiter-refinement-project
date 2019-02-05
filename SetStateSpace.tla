@@ -2,7 +2,7 @@
 (*
 Set representation of state space, used by AbsJupiter.
 *)
-EXTENDS JupiterCtx, JupiterSerial
+EXTENDS JupiterCtx
 -----------------------------------------------------------------------------
 RECURSIVE xForm(_, _, _, _) \* Transform cop in state space ss at replica r \in Replica.
 xForm(NextCop(_, _, _, _), r, cop, ss) == 
@@ -18,5 +18,5 @@ xForm(NextCop(_, _, _, _), r, cop, ss) ==
     IN  xFormHelper(cop, ctxDiff, ss \cup {cop}) 
 =============================================================================
 \* Modification History
-\* Last modified Thu Jan 10 08:55:58 CST 2019 by hengxin
+\* Last modified Tue Feb 05 11:47:39 CST 2019 by hengxin
 \* Created Wed Jan 09 21:25:30 CST 2019 by hengxin

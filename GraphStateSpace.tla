@@ -3,7 +3,7 @@
 The graph representation of n-ary ordered state space and 2D state space
 used in CJupiter and XJupiter, respectively.  
 *)
-EXTENDS JupiterCtx, GraphsUtil
+EXTENDS JupiterCtx, GraphUtils
 -----------------------------------------------------------------------------
 IsSS(G) == \* A state space is a digraph with labeled edges.
     /\ IsGraph(G) \* It is a digraph (represented by a record).
@@ -69,5 +69,5 @@ xFormCopCopsShift(cop, cops, shift) ==
     xFormCopCops(cop, SubSeq(cops, shift + 1, Len(cops)))
 =============================================================================
 \* Modification History
-\* Last modified Sat Jan 19 16:32:38 CST 2019 by hengxin
+\* Last modified Tue Feb 05 11:52:00 CST 2019 by hengxin
 \* Created Wed Dec 19 18:15:25 CST 2018 by hengxin

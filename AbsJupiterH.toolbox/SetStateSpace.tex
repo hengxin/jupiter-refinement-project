@@ -940,150 +940,56 @@
 \tlatex
 \setboolean{shading}{true}
  \@x{\makebox[0pt][r]{\scriptsize 1\hspace{1em}}}\moduleLeftDash\@xx{
- {\MODULE} CJupiter}\moduleRightDash\@xx{}%
+ {\MODULE} SetStateSpace}\moduleRightDash\@xx{}%
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- Specification of \ensuremath{CJupiter}; see
- \ensuremath{Wei}@\ensuremath{OPODIS\.{'}}2018.
+Set representation of state space, used by \ensuremath{AbsJupiter}.
 \end{cpar}%
 \end{lcom}%
- \@x{\makebox[0pt][r]{\scriptsize 5\hspace{1em}} {\EXTENDS} JupiterSerial ,\,
- GraphStateSpace}%
+\@x{\makebox[0pt][r]{\scriptsize 5\hspace{1em}} {\EXTENDS} JupiterCtx}%
 \@x{\makebox[0pt][r]{\scriptsize 6\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 7\hspace{1em}} {\VARIABLES}}%
-\@x{\makebox[0pt][r]{\scriptsize 8\hspace{1em}}\@s{16.4} css\@s{12.29}}%
+ \@x{\makebox[0pt][r]{\scriptsize 7\hspace{1em}} {\RECURSIVE} xForm ( \_ ,\,
+ \_ ,\, \_ ,\, \_ )}%
 \@y{\@s{0}%
- \ensuremath{css[r]}: the n-ary ordered state space at replica \ensuremath{r
- \.{\in} Replica
-}}%
-\@xx{}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 10\hspace{1em}} vars \.{\defeq} {\langle}
- intVars ,\, ctxVars ,\, serialVars ,\, css {\rangle}}%
-\@x{\makebox[0pt][r]{\scriptsize 11\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 12\hspace{1em}} TypeOK \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 13\hspace{1em}}\@s{16.4} \.{\land}\@s{9.74}
- TypeOKInt}%
- \@x{\makebox[0pt][r]{\scriptsize 14\hspace{1em}}\@s{16.4} \.{\land}\@s{9.74}
- TypeOKCtx}%
- \@x{\makebox[0pt][r]{\scriptsize 15\hspace{1em}}\@s{16.4} \.{\land}\@s{9.74}
- TypeOKSerial}%
- \@x{\makebox[0pt][r]{\scriptsize 16\hspace{1em}}\@s{16.4} \.{\land}\@s{9.74}
- \A\, r \.{\in} Replica \.{:} IsSS ( css [ r ] )}%
-\@x{\makebox[0pt][r]{\scriptsize 17\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 18\hspace{1em}} Init \.{\defeq}}%
-\@x{\makebox[0pt][r]{\scriptsize 19\hspace{1em}}\@s{16.4} \.{\land} InitInt}%
-\@x{\makebox[0pt][r]{\scriptsize 20\hspace{1em}}\@s{16.4} \.{\land} InitCtx}%
- \@x{\makebox[0pt][r]{\scriptsize 21\hspace{1em}}\@s{16.4} \.{\land}
- InitSerial}%
- \@x{\makebox[0pt][r]{\scriptsize 22\hspace{1em}}\@s{16.4} \.{\land} css \.{=}
- [ r \.{\in} Replica \.{\mapsto} EmptySS ]}%
-\@x{\makebox[0pt][r]{\scriptsize 23\hspace{1em}}}\midbar\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 24\hspace{1em}} NextEdge ( r ,\, u ,\, ss )
- \.{\defeq}}%
-\@y{\@s{0}%
- Return the first outgoing edge from \ensuremath{u} in \ensuremath{ss} at
- replica \ensuremath{r
-}}%
-\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 25\hspace{1em}}\@s{16.4} {\CHOOSE} e \.{\in}
- ss . edge \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 26\hspace{1em}}\@s{32.8} \.{\land} e . from
- \.{=} u}%
- \@x{\makebox[0pt][r]{\scriptsize 27\hspace{1em}}\@s{32.8} \.{\land} \A\, ue
- \.{\in} ss . edge \.{\,\backslash\,} \{ e \} \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 28\hspace{1em}}\@s{52.11} ( ue . from \.{=}
- u ) \.{\implies} tb ( e . cop . oid ,\, ue . cop . oid ,\, serial [ r ] )}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 30\hspace{1em}} Perform ( r ,\, cop )
- \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 31\hspace{1em}}\@s{16.4} \.{\LET} xform
- \.{\defeq} xForm ( NextEdge ,\, r ,\, cop ,\, css [ r ] )\@s{4.1}}%
-\@y{\@s{0}%
- \ensuremath{xform}: [\ensuremath{xcop}, \ensuremath{xss}, lss]
+ Transform cop in state space \ensuremath{ss} at replica \ensuremath{r
+ \.{\in} Replica}.
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 32\hspace{1em}}\@s{16.4} \.{\IN} \.{\land}
- css \.{'} \.{=} [ css {\EXCEPT} {\bang} [ r ] \.{=} @ \.{\oplus} xform . xss
- ]}%
- \@x{\makebox[0pt][r]{\scriptsize 33\hspace{1em}}\@s{36.79} \.{\land}
- SetNewAop ( r ,\, xform . xcop . op )}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 35\hspace{1em}} ClientPerform ( c ,\, cop )
- \.{\defeq} Perform ( c ,\, cop )}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 37\hspace{1em}} ServerPerform ( cop )
- \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 38\hspace{1em}}\@s{16.4} \.{\land} Perform (
- Server ,\, cop )}%
- \@x{\makebox[0pt][r]{\scriptsize 39\hspace{1em}}\@s{16.4} \.{\land} Comm
- {\bang} SSendSame ( ClientOf ( cop ) ,\, cop )\@s{4.1}}%
+ \@x{\makebox[0pt][r]{\scriptsize 8\hspace{1em}} xForm ( NextCop ( \_ ,\, \_
+ ,\, \_ ,\, \_ ) ,\, r ,\, cop ,\, ss ) \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 9\hspace{1em}}\@s{16.4} \.{\LET} ctxDiff
+ \.{\defeq} ds [ r ] \.{\,\backslash\,} cop . ctx}%
 \@y{\@s{0}%
- broadcast the original cop
-}%
-\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 40\hspace{1em}}}\midbar\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 41\hspace{1em}} DoOp ( c ,\, op )\@s{5.43}
- \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 42\hspace{1em}}\@s{26.06} \.{\LET} cop
- \.{\defeq} [ op \.{\mapsto} op ,\, oid \.{\mapsto} [ c \.{\mapsto} c ,\, seq
- \.{\mapsto} cseq [ c ] ] ,\, ctx \.{\mapsto} ds [ c ] ]}%
- \@x{\makebox[0pt][r]{\scriptsize 43\hspace{1em}}\@s{26.06} \.{\IN} \.{\land}
- ClientPerform ( c ,\, cop )}%
- \@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}}\@s{46.46} \.{\land} Comm
- {\bang} CSend ( cop )}%
-\@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}} Do ( c ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}}\@s{22.34} \.{\land} DoInt (
- DoOp ,\, c )}%
- \@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}}\@s{22.34} \.{\land} DoCtx (
- c )}%
- \@x{\makebox[0pt][r]{\scriptsize 49\hspace{1em}}\@s{22.34} \.{\land} DoSerial
- ( c )}%
-\@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 51\hspace{1em}} Rev ( c ) \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 52\hspace{1em}}\@s{20.94} \.{\land} RevInt (
- ClientPerform ,\, c )}%
- \@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}}\@s{20.94} \.{\land} RevCtx (
- c )}%
- \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}}\@s{20.94} \.{\land}
- RevSerial ( c )}%
-\@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}} SRev \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}}\@s{16.4} \.{\land} SRevInt (
- ServerPerform )}%
-\@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{16.4} \.{\land} SRevCtx}%
- \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{16.4} \.{\land}
- SRevSerial}%
-\@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 61\hspace{1em}} Next \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 62\hspace{1em}}\@s{16.4} \.{\lor} \E\, c
- \.{\in} Client \.{:} Do ( c ) \.{\lor} Rev ( c )}%
-\@x{\makebox[0pt][r]{\scriptsize 63\hspace{1em}}\@s{16.4} \.{\lor} SRev}%
-\@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}} Fairness \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 66\hspace{1em}}\@s{16.4} {\WF}_{ vars} (
- SRev \.{\lor} \E\, c \.{\in} Client \.{:} Rev ( c ) )}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 68\hspace{1em}} Spec \.{\defeq} Init
- \.{\land} {\Box} [ Next ]_{ vars}}%
-\@y{\@s{0}%
- \ensuremath{\.{\land} Fairness
+ \ensuremath{{\THEOREM}}: \ensuremath{cop.ctx \.{\subseteq} ds[r]
 }}%
 \@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 69\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 70\hspace{1em}} Compactness \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 10\hspace{1em}}\@s{36.79} {\RECURSIVE}
+ xFormHelper ( \_ ,\, \_ ,\, \_ )}%
+ \@x{\makebox[0pt][r]{\scriptsize 11\hspace{1em}}\@s{40.89} xFormHelper ( coph
+ ,\, ctxDiffh ,\, xss ) \.{\defeq}}%
 \@y{\@s{0}%
- Compactness of \ensuremath{CJupiter}: the \ensuremath{CSSes} at all replicas
- are the same.
-}%
+ Return transformed \ensuremath{xcop
+}}%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 71\hspace{1em}}\@s{16.4} Comm {\bang}
- EmptyChannel \.{\implies} Cardinality ( Range ( css ) ) \.{=} 1}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 73\hspace{1em}} {\THEOREM} Spec \.{\implies}
- {\Box} Compactness}%
-\@x{\makebox[0pt][r]{\scriptsize 74\hspace{1em}}}\bottombar\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 12\hspace{1em}}\@s{57.29} {\IF} ctxDiffh
+ \.{=} \{ \} \.{\THEN} [ xcop \.{\mapsto} coph ,\, xss \.{\mapsto} xss ]}%
+\@y{\@s{0}%
+ and new state space \ensuremath{xss
+}}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 13\hspace{1em}}\@s{57.29} \.{\ELSE} \.{\LET}
+ fcoph\@s{1.57} \.{\defeq} NextCop ( r ,\, coph ,\, ss ,\, ctxDiffh )}%
+ \@x{\makebox[0pt][r]{\scriptsize 14\hspace{1em}}\@s{109.01} xcoph \.{\defeq}
+ COT ( coph ,\, fcoph )}%
+ \@x{\makebox[0pt][r]{\scriptsize 15\hspace{1em}}\@s{100.91} xfcoph\@s{5.03}
+ \.{\defeq} COT ( fcoph ,\, coph )}%
+ \@x{\makebox[0pt][r]{\scriptsize 16\hspace{1em}}\@s{88.61} \.{\IN}\@s{4.1}
+ xFormHelper ( xcoph ,\, ctxDiffh \.{\,\backslash\,} \{ fcoph . oid \} ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 17\hspace{1em}}\@s{204.92} xss \.{\cup} \{
+ xcoph ,\, xfcoph \} )}%
+ \@x{\makebox[0pt][r]{\scriptsize 18\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
+ xFormHelper ( cop ,\, ctxDiff ,\, ss \.{\cup} \{ cop \} )}%
+\@x{\makebox[0pt][r]{\scriptsize 19\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
@@ -1091,12 +997,12 @@
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
  \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Tue}
- \ensuremath{Feb} 05 11:07:47 \ensuremath{CST} 2019 by \ensuremath{hengxin
+ \ensuremath{Feb} 05 11:47:39 \ensuremath{CST} 2019 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Created Sat \ensuremath{Sep} 01 11:08:00
- \ensuremath{CST} 2018 by \ensuremath{hengxin
+ \ensuremath{\.{\,\backslash\,}}* Created \ensuremath{Wed} \ensuremath{Jan} 09
+ 21:25:30 \ensuremath{CST} 2019 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \end{lcom}%

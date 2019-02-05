@@ -1,6 +1,7 @@
 ----------------------------- MODULE AbsJupiter -----------------------------
 (*
-Abstract Jupiter, inspired by the COT algorithm proposed by Sun and Sun; see TPDS'2009.
+Abstract Jupiter, inspired by the COT algorithm proposed by Sun and Sun; 
+see Sun@TPDS'2009.
 *)
 EXTENDS JupiterSerial, SetStateSpace
 -----------------------------------------------------------------------------
@@ -81,5 +82,5 @@ Compactness == \* Compactness of state space
 THEOREM Spec => []Compactness
 =============================================================================
 \* Modification History
-\* Last modified Tue Jan 29 10:11:54 CST 2019 by hengxin
+\* Last modified Tue Feb 05 11:05:02 CST 2019 by hengxin
 \* Created Wed Dec 05 19:55:52 CST 2018 by hengxin

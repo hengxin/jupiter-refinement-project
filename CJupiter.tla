@@ -1,6 +1,6 @@
 ------------------------------ MODULE CJupiter ------------------------------
 (*
-Specification of our own CJupiter protocol; see Wei@OPODIS'2018.
+Specification of CJupiter; see Wei@OPODIS'2018.
 *)
 EXTENDS JupiterSerial, GraphStateSpace 
 -----------------------------------------------------------------------------
@@ -73,5 +73,5 @@ Compactness == \* Compactness of CJupiter: the CSSes at all replicas are the sam
 THEOREM Spec => []Compactness
 =============================================================================
 \* Modification History
-\* Last modified Sat Feb 02 12:06:40 CST 2019 by hengxin
+\* Last modified Tue Feb 05 11:07:47 CST 2019 by hengxin
 \* Created Sat Sep 01 11:08:00 CST 2018 by hengxin
