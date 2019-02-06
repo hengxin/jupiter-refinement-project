@@ -940,76 +940,196 @@
 \tlatex
 \setboolean{shading}{true}
  \@x{\makebox[0pt][r]{\scriptsize 1\hspace{1em}}}\moduleLeftDash\@xx{
- {\MODULE} XJupiterH}\moduleRightDash\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 2\hspace{1em}} {\EXTENDS} XJupiter}%
-\@x{\makebox[0pt][r]{\scriptsize 3\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 4\hspace{1em}} {\VARIABLE} list}%
- \@x{\makebox[0pt][r]{\scriptsize 5\hspace{1em}} varsH \.{\defeq} {\langle}
- vars ,\, list {\rangle}}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 7\hspace{1em}} TypeOKH \.{\defeq} TypeOK
- \.{\land} ( list \.{\subseteq} List )}%
-\@x{\makebox[0pt][r]{\scriptsize 8\hspace{1em}}}\midbar\@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 9\hspace{1em}} InitH \.{\defeq} Init
- \.{\land} list \.{=} \{ InitState \}}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 11\hspace{1em}} DoH ( c ) \.{\defeq} Do ( c
- ) \.{\land} list \.{'} \.{=} list \.{\cup} \{ state \.{'} [ c ] \}}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 13\hspace{1em}} RevH ( c ) \.{\defeq} Rev (
- c ) \.{\land} list \.{'} \.{=} list \.{\cup} \{ state \.{'} [ c ] \}}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 15\hspace{1em}} SRevH \.{\defeq} SRev
- \.{\land} list \.{'} \.{=} list \.{\cup} \{ state \.{'} [ Server ] \}}%
-\@x{\makebox[0pt][r]{\scriptsize 16\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 17\hspace{1em}} NextH \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 18\hspace{1em}}\@s{16.4} \.{\lor} \E\, c
- \.{\in} Client \.{:} DoH ( c ) \.{\lor} RevH ( c )}%
-\@x{\makebox[0pt][r]{\scriptsize 19\hspace{1em}}\@s{16.4} \.{\lor} SRevH}%
-\@pvspace{8.0pt}%
-\@x{\makebox[0pt][r]{\scriptsize 21\hspace{1em}} FairnessH \.{\defeq}}%
- \@x{\makebox[0pt][r]{\scriptsize 22\hspace{1em}}\@s{16.4} \.{\land} {\WF}_{
- varsH} ( SRevH \.{\lor} \E\, c \.{\in} Client \.{:} RevH ( c ) )}%
-\@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 24\hspace{1em}} SpecH \.{\defeq} InitH
- \.{\land} {\Box} [ NextH ]_{ varsH}}%
+ {\MODULE} GraphStateSpace}\moduleRightDash\@xx{}%
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+ The graph representation of \ensuremath{n}-ary ordered state space and
+ \ensuremath{2D} state space
+ used in \ensuremath{CJupiter} and \ensuremath{XJupiter}, respectively.
+\end{cpar}%
+\end{lcom}%
+ \@x{\makebox[0pt][r]{\scriptsize 6\hspace{1em}} {\EXTENDS} JupiterCtx ,\,
+ GraphUtils}%
+\@x{\makebox[0pt][r]{\scriptsize 7\hspace{1em}}}\midbar\@xx{}%
+\@x{\makebox[0pt][r]{\scriptsize 8\hspace{1em}} IsSS ( G ) \.{\defeq}}%
 \@y{\@s{0}%
- \ensuremath{\.{\land} FairnessH
-}}%
-\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 25\hspace{1em}}}\midbar\@xx{}%
-\@x{\makebox[0pt][r]{\scriptsize 26\hspace{1em}} WLSpec \.{\defeq}}%
-\@y{\@s{0}%
- The weak list specification
+ A state space is a digraph with labeled edges.
 }%
 \@xx{}%
- \@x{\makebox[0pt][r]{\scriptsize 27\hspace{1em}}\@s{16.4} Comm {\bang}
- EmptyChannel}%
- \@x{\makebox[0pt][r]{\scriptsize 28\hspace{1em}}\@s{45.78} \.{\implies} \A\,
- l1 ,\, l2 \.{\in} list \.{:}}%
- \@x{\makebox[0pt][r]{\scriptsize 29\hspace{1em}}\@s{65.44} \.{\land}
- Injective ( l1 )}%
- \@x{\makebox[0pt][r]{\scriptsize 30\hspace{1em}}\@s{65.44} \.{\land}
- Injective ( l2 )}%
- \@x{\makebox[0pt][r]{\scriptsize 31\hspace{1em}}\@s{65.44} \.{\land}
- Compatible ( l1 ,\, l2 )}%
+ \@x{\makebox[0pt][r]{\scriptsize 9\hspace{1em}}\@s{20.38} \.{\land} IsGraph (
+ G )}%
+\@y{\@s{0}%
+ It is a digraph (represented by a record).
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 10\hspace{1em}}\@s{20.38} \.{\land} G . node
+ \.{\subseteq} ( {\SUBSET} Oid )}%
+\@y{\@s{0}%
+ Each node represents a document state, \ensuremath{i.e}., a set of
+ \ensuremath{Oid}.
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 11\hspace{1em}}\@s{20.38} \.{\land} G .
+ edge\@s{1.53} \.{\subseteq} [ from \.{:} G . node ,\, to \.{:} G . node ,\,
+ cop \.{:} Cop ]}%
+\@y{\@s{0}%
+ Labeled with a \ensuremath{Cop} operation.
+}%
+\@xx{}%
 \@pvspace{8.0pt}%
- \@x{\makebox[0pt][r]{\scriptsize 33\hspace{1em}} {\THEOREM} SpecH
- \.{\implies} {\Box} WLSpec}%
-\@x{\makebox[0pt][r]{\scriptsize 34\hspace{1em}}}\bottombar\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 13\hspace{1em}} EmptySS \.{\defeq}
+ EmptyGraph}%
+\@x{\makebox[0pt][r]{\scriptsize 14\hspace{1em}}}\midbar\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 15\hspace{1em}} Locate ( cop ,\, ss )
+ \.{\defeq}}%
+\@y{\@s{0}%
+ Locate the node in state space \ensuremath{ss} that matches the context of
+ cop.
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 16\hspace{1em}}\@s{16.4} {\CHOOSE} n \.{\in}
+ ss . node \.{:} n \.{=} cop . ctx}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 18\hspace{1em}} xForm ( NextEdge ( \_ ,\, \_
+ ,\, \_ ) ,\, r ,\, cop ,\, ss ) \.{\defeq}}%
+\@y{\@s{0}%
+ Transform cop with an operation sequence
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 19\hspace{1em}}\@s{16.4} \.{\LET} u
+ \.{\defeq} Locate ( cop ,\, ss )\@s{50.35}}%
+\@y{\@s{0}%
+ in state space \ensuremath{ss} at replica \ensuremath{r}.
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 20\hspace{1em}}\@s{36.79} v\@s{0.45}
+ \.{\defeq} u \.{\cup} \{ cop . oid \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 21\hspace{1em}}\@s{36.79} {\RECURSIVE}
+ xFormHelper ( \_ ,\, \_ ,\, \_ ,\, \_ )}%
+ \@x{\makebox[0pt][r]{\scriptsize 22\hspace{1em}}\@s{40.89} xFormHelper ( uh
+ ,\, vh ,\, coph ,\, xss ) \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 23\hspace{1em}}\@s{57.29} {\IF} uh \.{=} ds
+ [ r ]}%
+ \@x{\makebox[0pt][r]{\scriptsize 24\hspace{1em}}\@s{57.29} \.{\THEN} [ xcop
+ \.{\mapsto} coph ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 25\hspace{1em}}\@s{91.38} xss \.{\mapsto}
+ xss ,\,}%
+\@y{\@s{0}%
+ \ensuremath{xss}: \ensuremath{eXtra} \ensuremath{ss} created during
+ transformation
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 26\hspace{1em}}\@s{91.38} lss\@s{2.08}
+ \.{\mapsto} [ node \.{\mapsto} \{ vh \} ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 27\hspace{1em}}\@s{123.35} edge\@s{1.53}
+ \.{\mapsto} \{ [ from \.{\mapsto} uh ,\, to \.{\mapsto} vh ,\, cop
+ \.{\mapsto} coph ] \} ] ]}%
+ \@x{\makebox[0pt][r]{\scriptsize 28\hspace{1em}}\@s{57.29} \.{\ELSE} \.{\LET}
+ e \.{\defeq} NextEdge ( r ,\, uh ,\, ss )}%
+ \@x{\makebox[0pt][r]{\scriptsize 29\hspace{1em}}\@s{109.01} copprime
+ \.{\defeq} e . cop}%
+ \@x{\makebox[0pt][r]{\scriptsize 30\hspace{1em}}\@s{109.01} uprime \.{\defeq}
+ e . to}%
+ \@x{\makebox[0pt][r]{\scriptsize 31\hspace{1em}}\@s{109.01} vprime\@s{0.76}
+ \.{\defeq} vh \.{\cup} \{ copprime . oid \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 32\hspace{1em}}\@s{113.11} coph2copprime
+ \.{\defeq} COT ( coph ,\, copprime )}%
+ \@x{\makebox[0pt][r]{\scriptsize 33\hspace{1em}}\@s{113.11} copprime2coph
+ \.{\defeq} COT ( copprime ,\, coph )}%
+ \@x{\makebox[0pt][r]{\scriptsize 34\hspace{1em}}\@s{88.61} \.{\IN}\@s{4.09}
+ xFormHelper ( uprime ,\, vprime ,\, coph2copprime ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 35\hspace{1em}}\@s{125.41} xss \.{\oplus} [
+ node \.{\mapsto} \{ vprime \} ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 36\hspace{1em}}\@s{154.04} edge\@s{1.53}
+ \.{\mapsto} \{ [ from \.{\mapsto} vh ,\, to \.{\mapsto} vprime ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 37\hspace{1em}}\@s{202.16} cop\@s{1.78}
+ \.{\mapsto} copprime2coph ] ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 38\hspace{1em}}\@s{195.28} [ from
+ \.{\mapsto} uprime ,\, to \.{\mapsto} vprime ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 39\hspace{1em}}\@s{202.16} cop\@s{1.78}
+ \.{\mapsto} coph2copprime ] \} ] )}%
+ \@x{\makebox[0pt][r]{\scriptsize 40\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
+ xFormHelper ( u ,\, v ,\, cop ,\, [ node \.{\mapsto} \{ v \} ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 41\hspace{1em}}\@s{149.63} edge\@s{1.53}
+ \.{\mapsto} \{ [ from \.{\mapsto} u ,\, to \.{\mapsto} v ,\, cop \.{\mapsto}
+ cop ] \} ] )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 43\hspace{1em}} xFormCopCops ( cop ,\, cops
+ ) \.{\defeq}}%
+\@y{\@s{0}%
+ Transform cop against cops on state space.
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 44\hspace{1em}}\@s{16.4} \.{\LET}
+ {\RECURSIVE} xFormCopCopsSSHelper ( \_ ,\, \_ ,\, \_ )}%
+ \@x{\makebox[0pt][r]{\scriptsize 45\hspace{1em}}\@s{40.89}
+ xFormCopCopsSSHelper ( coph ,\, copsh ,\, xss ) \.{\defeq}}%
+ \@x{\makebox[0pt][r]{\scriptsize 46\hspace{1em}}\@s{57.29} \.{\LET} u
+ \.{\defeq} coph . ctx}%
+ \@x{\makebox[0pt][r]{\scriptsize 47\hspace{1em}}\@s{77.69} v\@s{0.45}
+ \.{\defeq} u \.{\cup} \{ coph . oid \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 48\hspace{1em}}\@s{61.39} uvSS\@s{0.02}
+ \.{\defeq} [ node \.{\mapsto} \{ u ,\, v \} ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 49\hspace{1em}}\@s{105.49} edge\@s{1.53}
+ \.{\mapsto} \{ [ from \.{\mapsto} u ,\, to \.{\mapsto} v ,\, cop \.{\mapsto}
+ coph ] \} ]}%
+ \@x{\makebox[0pt][r]{\scriptsize 50\hspace{1em}}\@s{61.39} \.{\IN} {\IF}
+ copsh \.{=} {\langle} {\rangle} \.{\THEN} [ xcop \.{\mapsto} coph ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 51\hspace{1em}}\@s{177.53} xss\@s{1.84}
+ \.{\mapsto} xss \.{\oplus} uvSS ,\, lss \.{\mapsto} uvSS ]}%
+ \@x{\makebox[0pt][r]{\scriptsize 52\hspace{1em}}\@s{81.79} \.{\ELSE} \.{\LET}
+ copprimeh \.{\defeq} Head ( copsh )}%
+ \@x{\makebox[0pt][r]{\scriptsize 53\hspace{1em}}\@s{145.81} uprime\@s{1.77}
+ \.{\defeq} u \.{\cup} \{ copprimeh . oid \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 54\hspace{1em}}\@s{145.81} vprime\@s{2.53}
+ \.{\defeq} u \.{\cup} \{ coph . oid ,\, copprimeh . oid \}}%
+ \@x{\makebox[0pt][r]{\scriptsize 55\hspace{1em}}\@s{133.51}
+ coph2copprimeh\@s{4.10} \.{\defeq} COT ( coph ,\, copprimeh )}%
+ \@x{\makebox[0pt][r]{\scriptsize 56\hspace{1em}}\@s{137.61} copprimeh2coph
+ \.{\defeq} COT ( copprimeh ,\, coph )}%
+ \@x{\makebox[0pt][r]{\scriptsize 57\hspace{1em}}\@s{117.21} \.{\IN}
+ xFormCopCopsSSHelper ( coph2copprimeh ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 58\hspace{1em}}\@s{149.91} Tail ( copsh )
+ ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 59\hspace{1em}}\@s{149.91} xss \.{\oplus} [
+ node \.{\mapsto} \{ u ,\, v \} ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 60\hspace{1em}}\@s{178.54} edge\@s{1.53}
+ \.{\mapsto} \{ [ from \.{\mapsto} u ,\, to \.{\mapsto} v ,\, cop \.{\mapsto}
+ coph ] ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 61\hspace{1em}}\@s{219.78} [ from
+ \.{\mapsto} u ,\, to \.{\mapsto} uprime ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 62\hspace{1em}}\@s{226.66} cop\@s{1.78}
+ \.{\mapsto} copprimeh ] ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 63\hspace{1em}}\@s{219.78} [ from
+ \.{\mapsto} v ,\, to \.{\mapsto} vprime ,\,}%
+ \@x{\makebox[0pt][r]{\scriptsize 64\hspace{1em}}\@s{226.66} cop\@s{1.78}
+ \.{\mapsto} copprimeh2coph ] \} ] )}%
+ \@x{\makebox[0pt][r]{\scriptsize 65\hspace{1em}}\@s{16.4} \.{\IN}\@s{4.09}
+ xFormCopCopsSSHelper ( cop ,\, cops ,\, EmptySS )}%
+\@pvspace{8.0pt}%
+ \@x{\makebox[0pt][r]{\scriptsize 67\hspace{1em}} xFormCopCopsShift ( cop ,\,
+ cops ,\, shift ) \.{\defeq}}%
+\@x{\makebox[0pt][r]{\scriptsize 68\hspace{1em}}\@s{99.97}}%
+\@y{\@s{0}%
+ shifting the first shift elements out of cops
+}%
+\@xx{}%
+ \@x{\makebox[0pt][r]{\scriptsize 69\hspace{1em}}\@s{16.4} xFormCopCops ( cop
+ ,\, SubSeq ( cops ,\, shift \.{+} 1 ,\, Len ( cops ) ) )}%
+\@x{\makebox[0pt][r]{\scriptsize 70\hspace{1em}}}\bottombar\@xx{}%
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
 \ensuremath{\.{\,\backslash\,}}* Modification History
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Wed}
- \ensuremath{Feb} 06 23:50:17 \ensuremath{CST} 2019 by \ensuremath{hengxin
+ \ensuremath{\.{\,\backslash\,}}* Last modified \ensuremath{Tue}
+ \ensuremath{Feb} 05 11:52:00 \ensuremath{CST} 2019 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Created \ensuremath{Wed} \ensuremath{Oct} 10
- 15:40:13 \ensuremath{CST} 2018 by \ensuremath{hengxin
+ \ensuremath{\.{\,\backslash\,}}* Created \ensuremath{Wed} \ensuremath{Dec} 19
+ 18:15:25 \ensuremath{CST} 2018 by \ensuremath{hengxin
 }%
 \end{cpar}%
 \end{lcom}%
