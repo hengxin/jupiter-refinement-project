@@ -1,0 +1,86 @@
+---------------------------- MODULE CAbsJupiter ----------------------------
+(*
+Centeralized version of AbsJupiter. 
+*)
+EXTENDS SetStateSpace
+-----------------------------------------------------------------------------
+VARIABLES
+    copss,  \* copss[r]: the state space (i.e., a set) of Cop maintained at replia r \in Replica
+    hb,     \* happens-before relation among operations
+    sv      \* global serial view (established at the server)
+    
+vars == <<intVars, ctxVars, copss>>
+-----------------------------------------------------------------------------
+TypeOK == 
+    /\ TypeOKInt
+    /\ TypeOKCtx
+    /\ copss \in [Replica -> SUBSET Cop]
+    /\ hb \subseteq Oid \X Oid
+    /\ sv \in Seq(Oid)
+-----------------------------------------------------------------------------
+Init ==
+    /\ InitInt
+    /\ InitCtx
+    /\ copss = [r \in Replica |-> {}]
+    /\ hb = {}
+    /\ sv = <<>>
+-----------------------------------------------------------------------------
+NextCop(r, cop, ss, ctx) == \* Return the next fcop \in Cop against which cop is to be transformed.
+    LET foid == CHOOSE oid \in ctx: \* the first oid in ctx according to serial[r]
+                    \A id \in ctx \ {oid}: TRUE \* tb(oid, id, serial[r])
+    IN  CHOOSE fcop \in ss: \* THEOREM: Existence of fcop
+            fcop.oid = foid /\ fcop.ctx = cop.ctx 
+
+Perform(r, cop) ==
+    LET xform == xForm(NextCop, r, cop, copss[r])  \* [xcop, xss] 
+    IN  /\ copss' = [copss EXCEPT ![r] = xform.xss]
+        /\ SetNewAop(r, xform.xcop.op)
+        
+ClientPerform(c, cop) == Perform(c, cop)
+        
+ServerPerform(cop) == 
+    /\ Perform(Server, cop)
+    /\ Comm!SSendSame(ClientOf(cop), cop)
+-----------------------------------------------------------------------------
+DoOp(c, op) ==
+    LET cop == [op |-> op, oid |-> [c |-> c, seq |-> cseq[c]]]
+    IN  /\ ClientPerform(c, cop)
+        /\ Comm!CSend(cop)
+
+Do(c) == 
+    /\ DoInt(DoOp, c)
+    /\ DoCtx(c)
+
+Rev(c) ==
+    /\ RevInt(ClientPerform, c)
+    /\ RevCtx(c)
+
+SRev ==
+    /\ SRevInt(ServerPerform)
+    /\ SRevCtx
+-----------------------------------------------------------------------------
+Next ==
+    \/ \E c \in Client: Do(c) \/ Rev(c)
+    \/ SRev
+
+Fairness ==
+    WF_vars(SRev \/ \E c \in Client: Rev(c))
+
+Spec == Init /\ [][Next]_vars \* /\ Fairness
+-----------------------------------------------------------------------------
+QC == \* Quiescent Consistency 
+    Comm!EmptyChannel => Cardinality(Range(state)) = 1
+THEOREM Spec => []QC
+
+SEC == \* Strong Eventual Consistency
+    \A r1, r2 \in Replica: 
+        ds[r1] = ds[r2] => state[r1] = state[r2]
+THEOREM Spec => []SEC
+
+Compactness == \* Compactness of state space
+    Comm!EmptyChannel => Cardinality(Range(copss)) = 1
+THEOREM Spec => []Compactness
+=============================================================================
+\* Modification History
+\* Last modified Mon Feb 25 21:29:21 CST 2019 by hengxin
+\* Created Sun Feb 24 20:32:34 CST 2019 by hengxin
