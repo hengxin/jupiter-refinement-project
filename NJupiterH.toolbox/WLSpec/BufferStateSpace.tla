@@ -21,12 +21,17 @@ xFormFull(xform(_, _), op, ops) ==
 xFormShift(xform(_, _), op, ops, shift) == \* shift of ops
     xFormFull(xform, op, SubSeq(ops, shift + 1, Len(ops)))
 
+xFormLocate(xform(_, _), op, ops, pos) == \* position of ops
+    LET xformResult == xFormShift(xform, op, ops, pos)
+    IN [xop |-> xformResult.xop,
+        xops |-> SubSeq(ops, 1, pos) \o xformResult.xops] \* restore shifted ops
+
 xFormAppend(xform(_, _), op, ops, pos) == \* after xform, op will be appended to ops
     LET xformResult == xFormShift(xform, op, ops, pos)
     IN [xop |-> xformResult.xop,
         xops |-> SubSeq(ops, 1, pos) \o xformResult.xops \o <<xformResult.xop>>]
 =============================================================================
 \* Modification History
-\* Last modified Sun Apr 21 15:55:41 CST 2019 by tangruize
+\* Last modified Sat Apr 20 21:50:50 CST 2019 by tangruize
 \* Last modified Thu Jan 17 10:30:18 CST 2019 by hengxin
 \* Created Sat Jan 12 14:55:34 CST 2019 by hengxin
