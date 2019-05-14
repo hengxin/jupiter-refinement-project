@@ -20,8 +20,8 @@ TypeOKEx ==
     /\ commXJ!TypeOK
     /\ cack \in [Client -> [l: Nat, g: Nat]]
     /\ sack \in [Client -> [l: Nat, g: Nat]]
-    /\ cbuf \in [Client -> Seq(Cop)]
-    /\ sbuf \in [Client -> Seq(Cop)]
+    /\ cbuf \in [Client -> Seq([cop: Cop, ack: Nat])]
+    /\ sbuf \in [Client -> Seq([cop: Cop, ack: Nat])]
 -----------------------------------------------------------------------------
 InitEx == 
     /\ InitInt
@@ -35,7 +35,7 @@ InitEx ==
 DoOpEx(c, op) == 
     LET cop == [op |-> op, oid |-> [c |-> c, seq |-> cack[c].l + 1], ctx |-> ds[c]]
     IN /\ cack' = [cack EXCEPT ![c] = [l |-> @.l + 1, g |-> @.g]]
-       /\ cbuf' = [cbuf EXCEPT ![c] = Append(@, cop)]
+       /\ cbuf' = [cbuf EXCEPT ![c] = Append(@, [cop |-> cop, ack |-> cack[c].l])]
        /\ SetNewAop(c, op)
        /\ Comm!CSend([ack |-> cack[c].g, cop |-> cop, oid |-> cop.oid])
        /\ commXJ!CSend(cop)
@@ -44,27 +44,29 @@ RemoveAckedOps(s, ack) ==
     LET F[i \in 0..Len(s)] == 
         IF i = 0
         THEN << >>
-        ELSE IF s[i].oid.seq > ack
+        ELSE IF s[i].ack >= ack
              THEN Append(F[i-1], s[i])
              ELSE F[i-1]
     IN F[Len(s)]
 
+COTWrapper(l, r) == [cop |-> COT(l.cop, r.cop), ack |-> l.ack]
+
 ClientPerformEx(c, m) == 
-    LET xform == xFormFull(COT, m.cop, RemoveAckedOps(cbuf[c], m.ack))
+    LET xform == xFormFull(COTWrapper, m, RemoveAckedOps(cbuf[c], m.ack))
     IN  /\ cbuf' = [cbuf EXCEPT ![c] = xform.xops]
         /\ cack' = [cack EXCEPT ![c] = [l |-> @.l, g |-> @.g + 1]]
-        /\ SetNewAop(c, xform.xop.op)
+        /\ SetNewAop(c, xform.xop.cop.op)
 
 ServerPerformEx(m) == 
     LET c == ClientOf(m.cop)
-        xform == xFormFull(COT, m.cop, RemoveAckedOps(sbuf[c], m.ack))
-        xcop == xform.xop
+        xform == xFormFull(COTWrapper, m, RemoveAckedOps(sbuf[c], m.ack))
+        xcop == xform.xop.cop
     IN  /\ sack' = [cl \in Client |-> IF cl = c
                                       THEN [l |-> sack[cl].l + 1, g |-> sack[cl].g]
                                       ELSE [l |-> sack[cl].l, g |-> sack[cl].g + 1]]
         /\ sbuf' = [cl \in Client |-> IF cl = c
                                       THEN xform.xops 
-                                      ELSE Append(sbuf[cl], xcop)] 
+                                      ELSE Append(sbuf[cl], [cop |-> xcop, ack |-> sack[cl].g])]
         /\ SetNewAop(Server, xcop.op)
         /\ Comm!SSend(c, [cl \in Client |-> [ack |-> sack[cl].l,
                                              cop |-> xcop,
@@ -103,5 +105,5 @@ QC == \* Quiescent Consistency
 THEOREM SpecEx => []QC
 =============================================================================
 \* Modification History
-\* Last modified Sun Apr 21 15:44:38 CST 2019 by tangruize
+\* Last modified Tue May 14 13:34:34 CST 2019 by tangruize
 \* Created Wed Mar 19 04:49:31 CST 2019 by tangruize

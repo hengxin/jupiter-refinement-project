@@ -22,21 +22,23 @@ DoOpImpl(c, op) ==
                                edge |-> {[from |-> ds[c], to |-> ds'[c], cop |-> cop]}]]
     /\ UNCHANGED s2ss
 
+ExtractCop(r) == [i \in 1 .. Len(r) |-> r[i].cop]
+
 ClientPerformImpl(c, m) ==
-    /\ LET xform == xFormCopCops(m.cop, RemoveAckedOps(cbuf[c], m.ack)) \* [xcop, xss, lss]
+    /\ LET xform == xFormCopCops(m.cop, ExtractCop(RemoveAckedOps(cbuf[c], m.ack))) \* [xcop, xss, lss]
        IN  c2ss' = [c2ss EXCEPT ![c] = @ (+) xform.xss]
     /\ UNCHANGED s2ss
 
 ServerPerformImpl(m) ==
     /\ LET c == ClientOf(m.cop)
-           xform == xFormCopCops(m.cop, RemoveAckedOps(sbuf[c], m.ack)) \* [xcop, xss, lss]
+           xform == xFormCopCops(m.cop, ExtractCop(RemoveAckedOps(sbuf[c], m.ack))) \* [xcop, xss, lss]
        IN  s2ss' = [cl \in Client |-> IF cl = c THEN s2ss[cl] (+) xform.xss 
                                                 ELSE s2ss[cl] (+) xform.lss]
     /\ UNCHANGED c2ss
 -----------------------------------------------------------------------------
 DoImpl(c) == 
     /\ DoCtx(c)
-    /\ DoInt(DoOpImpl, c) \* TODO: refactor to use DoEx(c); cannot use two DoInt
+    /\ DoInt(DoOpImpl, c) \* TODO: refactor to use DoEx(c); cannot use two DoInt)
     /\ UNCHANGED <<sbuf, sack>>
 
 RevImpl(c) ==
@@ -62,5 +64,5 @@ XJ == INSTANCE XJupiter WITH Msg <- Cop,
 THEOREM SpecImpl => XJ!Spec
 =============================================================================
 \* Modification History
-\* Last modified Sun Apr 21 15:52:19 CST 2019 by tangruize
+\* Last modified Tue May 14 12:48:10 CST 2019 by tangruize
 \* Created Wed Mar 20 05:24:46 CST 2019 by tangruize
