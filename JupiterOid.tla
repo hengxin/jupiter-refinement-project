@@ -1,7 +1,7 @@
 ----------------------------- MODULE JupiterOid -----------------------------
 EXTENDS JupiterInterface, OT
 -----------------------------------------------------------------------------
-VARIABLES
+VARIABLES  \* 变量
     cseq    \* cseq[c]: local sequence number at client c \in Client
 
 oidVars== <<cseq>>
@@ -28,5 +28,5 @@ xForm(r, cop) == \* Transform $cop$ at replica $r$.
     IN  xFormHelper(cop, ctxDiff, copss[r] \cup {cop}) 
 =============================================================================
 \* Modification History
-\* Last modified Thu Apr 04 10:47:57 CST 2019 by hengxin
+\* Last modified Sun Jun 09 19:04:59 CST 2019 by hengxin
 \* Created Mon Feb 25 21:32:56 CST 2019 by hengxin
