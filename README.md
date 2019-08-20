@@ -38,8 +38,7 @@ These modules fall into four categories:
   - `CJupiter` is a refinement of `AbsJupiter`.
 
 ## Jupiter Protocols Illustrated
-See [jupiter-protocols-illustrations](https://github.com/hengxin/jupiter-refinement-project/jupiter-protocols-illustrations)
-for illustrations for these four Jupiter protocols.
+See [jupiter-protocols-illustrations](https://github.com/hengxin/jupiter-refinement-project/tree/master/jupiter-protocols-illustrations) for illustrations for these four Jupiter protocols.
 
 ## How to Run?
 
