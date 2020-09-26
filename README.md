@@ -1,10 +1,24 @@
 # `jupiter-refinement-project`
 
-## What Is This Project About?
+## Overview
 It is devoted to "formal specification and verification of a family of Jupiter protocols 
 for implementing replicated lists".
 
 Jupiter protocol is a core of many collaborative editing systems.
+
+## Papers
+See [paper-jupiter-refinement](https://github.com/hengxin/jupiter-refinement-project/blob/master/paper-jupiter-refinement.pdf).
+
+## How to Run?
+
+1. Run separately.
+
+  Create and run TLC models [in the usual way](https://tla.msr-inria.inria.fr/tlatoolbox/doc/model/model.html).
+
+2. Run in batch (***Recommended***).
+
+  We write scripts to automatically conduct a batch of experiments; 
+  see [tangruize/jupiter-experiments](https://github.com/tangruize/jupiter-experiments/tree/master).
 
 ## TLA+ Modules
 
@@ -39,17 +53,6 @@ These modules fall into four categories:
 
 ## Jupiter Protocols Illustrated
 See [jupiter-protocols-illustrations](https://github.com/hengxin/jupiter-refinement-project/tree/master/jupiter-protocols-illustrations) for illustrations for these four Jupiter protocols.
-
-## How to Run?
-
-1. Run separately.
-
-Create and run TLC models [in the usual way](https://tla.msr-inria.inria.fr/tlatoolbox/doc/model/model.html).
-
-2. Run in batch (***Recommended***).
-
-We write scripts to automatically conduct a batch of experiments;
-see [tangruize/jupiter-experiments](https://github.com/tangruize/jupiter-experiments/tree/master).
 
 ---
 For more details, please visit the [wiki](https://github.com/hengxin/jupiter-refinement-project/wiki) page.
